@@ -1,5 +1,6 @@
 [build-system]
 requires = [
+    "dataclasses-json",
     "frangipani-web-server @ git+https://github.com/Frangitron/frangipani-web-server@main",
     "pyside6",
     "pyside6-helpers @ git+https://github.com/MrFrangipane/pyside6-helpers@main",
