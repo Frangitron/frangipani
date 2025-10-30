@@ -3,10 +3,8 @@ import time
 from multiprocessing import Process, Event
 
 from frangipani_web_server.configuration import WebServerConfiguration
-from frangipani_web_server.control.definition import WebControlDefinition
-from frangipani_web_server.control.enum_type import ControlTypeEnum
-from frangipani_web_server.control.group import WebControlGroupDefinition
-from frangipani_web_server.control.placement import Placement
+from frangipani_web_server.control import Group, Fader, ControlOrientationEnum
+from frangipani_web_server.control.base.placement import Placement
 
 from frangipani.web_server.process_wrapper import main_loop
 from frangipani.web_server.shared_memory_manager import SharedMemoryManager
@@ -49,30 +47,48 @@ class WebServer:
         return self._shared_memory_manager.get_all_values()
 
 
-if __name__ == "__main__":
-    configuration = WebServerConfiguration(
-        public_folder=sys.argv[1],
-        root_control_definition=WebControlGroupDefinition(
-            label="Root Control",
-            placement=Placement(column=0, row=0),
-            controls=[
-                WebControlDefinition(
-                    address="/fader1",
-                    type=ControlTypeEnum.Fader,
-                    label="Fader 1",
-                    placement=Placement(column=0, row=0),
-                    value=0.0
-                ),
-                WebControlDefinition(
-                    address="/fader2",
-                    type=ControlTypeEnum.Fader,
-                    label="Fader 2",
-                    placement=Placement(column=0, row=1),
-                    value=0.0
-                )
-            ]
-        )
+configuration = WebServerConfiguration(
+    public_folder=sys.argv[1],
+    root_control_definition=Group(
+        label="Root Control",
+        placement=Placement(column=0, row=0),
+        controls=[
+            Fader(
+                address="/fader1",
+                label="Fader 1",
+                placement=Placement(column=0, row=0),
+                value=0.0
+            ),
+            Fader(
+                address="/fader2",
+                label="Fader 2",
+                placement=Placement(column=0, row=1),
+                value=0.0
+            ),
+            Group(
+                label="Group 1",
+                placement=Placement(column=0, row=2),
+                controls=[
+                    Fader(
+                        address="/fader3",
+                        label="Fader 3",
+                        placement=Placement(column=0, row=0),
+                        orientation=ControlOrientationEnum.Vertical,
+                        value=0.5,
+                    ),
+                    Fader(
+                        address="/fader4",
+                        label="Fader 4",
+                        placement=Placement(column=1, row=0),
+                        orientation=ControlOrientationEnum.Vertical,
+                        value=0.5,
+                    ),
+                ]
+            )
+        ]
     )
+)
+if __name__ == "__main__":
 
     web_server = WebServer(configuration)
     web_server.start()

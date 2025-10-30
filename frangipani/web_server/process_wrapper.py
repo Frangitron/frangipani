@@ -49,8 +49,6 @@ def main_loop(configuration: WebServerConfiguration, shared_memory_name: str, st
 
     except KeyboardInterrupt:
         _logger.info("\nKeyboard interrupt received, exiting...")
-    except Exception as e:
-        _logger.info(f"Error: {e}")
     finally:
         _cleanup(shared_memory)
         _logger.info("Exiting")
