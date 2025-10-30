@@ -4,6 +4,7 @@ from multiprocessing import Process, Event
 
 from frangipani_web_server.configuration import WebServerConfiguration
 from frangipani_web_server.control.definition import WebControlDefinition
+from frangipani_web_server.control.placement import Placement
 from frangipani_web_server.control.type_enum import ControlTypeEnum
 
 from frangipani.web_server.process_wrapper import main_loop
@@ -16,9 +17,7 @@ class WebServer:
 
         self._process: Process | None = None
         self._stop_event = Event()
-        self._shared_memory_manager = SharedMemoryManager(
-            control_definitions=configuration.control_definitions
-        )
+        self._shared_memory_manager = SharedMemoryManager(configuration.root_control_definition)
         self._shared_memory_name = self._shared_memory_manager.create_from_controls()
 
     def start(self):
@@ -52,18 +51,13 @@ class WebServer:
 if __name__ == "__main__":
     configuration = WebServerConfiguration(
         public_folder=sys.argv[1],
-        control_definitions=[
-            WebControlDefinition(
-                address="/fader1",
-                type=ControlTypeEnum.Fader,
-                label="Fader 1",
-                column=0,
-                row=0,
-                value=0.0,
-                min=0.0,
-                max=1.0
-            )
-        ]
+        root_control_definition=WebControlDefinition(
+            address="/fader1",
+            type=ControlTypeEnum.Fader,
+            label="Fader 1",
+            placement=Placement(column=0, row=0),
+            value=0.0
+        )
     )
 
     web_server = WebServer(configuration)
@@ -71,7 +65,10 @@ if __name__ == "__main__":
 
     while True:
         try:
-            print(web_server.get_all_values())
+            values = web_server.get_all_values()
+            if values:
+                print(values)
+
             time.sleep(1.0 / 10.0)
         except KeyboardInterrupt:
             break

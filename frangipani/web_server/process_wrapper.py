@@ -7,8 +7,7 @@ import sys
 import time
 
 from frangipani_web_server.configuration import WebServerConfiguration
-from frangipani_web_server.control.definition import WebControlDefinition
-from frangipani_web_server.server import FrangipaniWebServer
+from frangipani_web_server.server.server import FrangipaniWebServer
 
 _logger = logging.getLogger("WebProcessWrapper")
 
@@ -30,6 +29,7 @@ def _signal_handler(sig, frame):
 
 
 def main_loop(configuration: WebServerConfiguration, shared_memory_name: str, stop_event: EventType):
+    logging.basicConfig(level=logging.INFO)
     _logger.info("Starting web server loop...")
     shared_memory = None
 
@@ -42,6 +42,7 @@ def main_loop(configuration: WebServerConfiguration, shared_memory_name: str, st
         signal.signal(signal.SIGTERM, _signal_handler)  # Termination signal
 
         web_server = FrangipaniWebServer(configuration)
+        web_server.start()
 
         while not stop_event.is_set():
             time.sleep(1)

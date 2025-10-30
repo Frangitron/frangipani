@@ -1,12 +1,12 @@
 from multiprocessing.shared_memory import SharedMemory
 
-from frangipani_web_server.control.definition import WebControlDefinition
+from frangipani_web_server.control.base import BaseWebControlDefinition
 
 
 class SharedMemoryManager:
 
-    def __init__(self, control_definitions: list[WebControlDefinition]):
-        self._control_definitions = control_definitions
+    def __init__(self, roolt_control_definition: BaseWebControlDefinition):
+        self._root_control_definition = roolt_control_definition
         self._memory: SharedMemory | None = None
 
     def create_from_controls(self) -> str:
