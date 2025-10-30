@@ -55,7 +55,7 @@ configuration = WebServerConfiguration(
         controls=[
             Group(
                 label="Faders",
-                placement=Placement(column=0, row=1, spanColumn=3),
+                placement=Placement(column=0, row=1, spanColumn=4),
                 controls=[
                     Fader(
                         address="/fader1",
@@ -112,6 +112,13 @@ configuration = WebServerConfiguration(
                 placement=Placement(column=2, row=2),
                 is_toggle=True,
                 value=True
+            ),
+            Button(
+                address="/button3",
+                label="Button 3",
+                placement=Placement(column=3, row=2),
+                is_toggle=True,
+                value=False
             )
         ]
     )
