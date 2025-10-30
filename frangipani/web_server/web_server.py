@@ -4,6 +4,7 @@ from multiprocessing import Process, Event
 
 from frangipani_web_server.configuration import WebServerConfiguration
 from frangipani_web_server.control.definition import WebControlDefinition
+from frangipani_web_server.control.group import WebControlGroupDefinition
 from frangipani_web_server.control.placement import Placement
 from frangipani_web_server.control.type_enum import ControlTypeEnum
 
@@ -51,12 +52,18 @@ class WebServer:
 if __name__ == "__main__":
     configuration = WebServerConfiguration(
         public_folder=sys.argv[1],
-        root_control_definition=WebControlDefinition(
-            address="/fader1",
-            type=ControlTypeEnum.Fader,
-            label="Fader 1",
+        root_control_definition=WebControlGroupDefinition(
+            label="Root Control",
             placement=Placement(column=0, row=0),
-            value=0.0
+            controls=[
+                WebControlDefinition(
+                    address="/fader1",
+                    type=ControlTypeEnum.Fader,
+                    label="Fader 1",
+                    placement=Placement(column=0, row=0),
+                    value=0.0
+                )
+            ]
         )
     )
 
