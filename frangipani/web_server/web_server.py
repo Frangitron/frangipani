@@ -4,9 +4,9 @@ from multiprocessing import Process, Event
 
 from frangipani_web_server.configuration import WebServerConfiguration
 from frangipani_web_server.control.definition import WebControlDefinition
+from frangipani_web_server.control.enum_type import ControlTypeEnum
 from frangipani_web_server.control.group import WebControlGroupDefinition
 from frangipani_web_server.control.placement import Placement
-from frangipani_web_server.control.type_enum import ControlTypeEnum
 
 from frangipani.web_server.process_wrapper import main_loop
 from frangipani.web_server.shared_memory_manager import SharedMemoryManager
@@ -61,6 +61,13 @@ if __name__ == "__main__":
                     type=ControlTypeEnum.Fader,
                     label="Fader 1",
                     placement=Placement(column=0, row=0),
+                    value=0.0
+                ),
+                WebControlDefinition(
+                    address="/fader2",
+                    type=ControlTypeEnum.Fader,
+                    label="Fader 2",
+                    placement=Placement(column=0, row=1),
                     value=0.0
                 )
             ]
