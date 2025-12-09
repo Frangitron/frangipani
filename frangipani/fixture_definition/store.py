@@ -11,7 +11,7 @@ class IFixtureDefinitionStore(ABC):
         pass
 
     @abstractmethod
-    def save(self, library: FixtureDefinitionLibrary, identifier: str) -> None:
+    def save(self, identifier: str) -> None:
         pass
 
     @abstractmethod

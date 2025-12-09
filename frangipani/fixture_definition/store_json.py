@@ -33,15 +33,15 @@ class JsonFixtureDefinitionStore(IFixtureDefinitionStore):
 
         self._library = library
 
-    def save(self, library: FixtureDefinitionLibrary, identifier: str) -> None:
+    def save(self, identifier: str) -> None:
         _logger.info(f"Saving definitions to '{identifier}'")
 
-        data = library.to_dict()
-        data['api_version'] = library.api_version
+        data = self._library.to_dict()
+        data['api_version'] = self._library.api_version
         with open(identifier, "w") as f:
             json.dump(data, f, indent=2)
 
-        _logger.info(f"Saved {len(library.definitions)} definitions to '{identifier}'")
+        _logger.info(f"Saved {len(self._library.definitions)} definitions to '{identifier}'")
 
     def get_by_identifier(self, identifier: str) -> FixtureDefinition | None:
         for definition in self._library.definitions:

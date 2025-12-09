@@ -48,7 +48,9 @@ if __name__ == "__main__":
     )
 
     generic_filepath =  JsonFixtureDefinitionStore.make_generic_libray_filepath()
-    JsonFixtureDefinitionStore().save(library, generic_filepath)
+    store = JsonFixtureDefinitionStore()
+    store.set_library(library)
+    store.save(generic_filepath)
 
     _logger.info("Test loading back")
     definition_store = JsonFixtureDefinitionStore()
