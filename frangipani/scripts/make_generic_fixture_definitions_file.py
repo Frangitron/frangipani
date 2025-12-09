@@ -6,7 +6,7 @@ from pyside6helpers import resources
 from frangipani.fixture_definition import (
     FixtureDefinition,
     FixtureDefinitionLibrary,
-    FixtureDefinitionStore,
+    JsonFixtureDefinitionStore,
     ParameterDefinition,
     ParameterResolutionEnum,
     ParameterTypeEnum,
@@ -50,13 +50,14 @@ if __name__ == "__main__":
         ]
     )
 
-    generic_filepath = resources.find(os.path.join("fixture_definition_libraries", "generic.json"))
-    FixtureDefinitionStore().save(library, generic_filepath)
+    generic_filepath =  JsonFixtureDefinitionStore.make_generic_libray_filepath()
+    JsonFixtureDefinitionStore().save(library, generic_filepath)
 
     _logger.info("Test loading back")
-    loaded_library = FixtureDefinitionStore.load_library_file(generic_filepath)
+    definition_store = JsonFixtureDefinitionStore()
+    definition_store.load_default_library()
 
-    for local_definition, loaded_definition in zip(library.definitions, loaded_library.definitions):
-        assert local_definition == loaded_definition
+    for local_definition in library.definitions:
+        assert local_definition == definition_store.get_by_identifier(local_definition.identifier)
 
     _logger.info("All definitions loaded back successfully")

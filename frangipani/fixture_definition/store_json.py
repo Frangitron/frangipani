@@ -1,0 +1,61 @@
+import os
+
+import json
+import logging
+
+from pyside6helpers import resources
+
+from frangipani.fixture_definition.fixture_definition import FixtureDefinition
+from frangipani.fixture_definition.fixture_definition_library import FixtureDefinitionLibrary
+from frangipani.fixture_definition.store import IFixtureDefinitionStore
+
+_logger = logging.getLogger("FixtureDefinitionStore")
+
+
+class JsonFixtureDefinitionStore(IFixtureDefinitionStore):
+
+    def __init__(self):
+        self._library: FixtureDefinitionLibrary = FixtureDefinitionLibrary(
+            name="Internal"
+        )
+
+    def load(self, identifier: str) -> None:
+        _logger.info(f"Loading definitions from '{identifier}'")
+
+        with open(identifier, "r") as f:
+            library = FixtureDefinitionLibrary.from_json(f.read())
+
+        if library.api_version != FixtureDefinitionLibrary.api_version:
+            raise Exception(
+                f"Library '{library.name}'. Incompatible API version: "
+                f"{library.api_version} (should be {FixtureDefinitionLibrary.api_version})"
+            )
+
+        self._library = library
+
+    def save(self, library: FixtureDefinitionLibrary, identifier: str) -> None:
+        _logger.info(f"Saving definitions to '{identifier}'")
+
+        data = library.to_dict()
+        data['api_version'] = library.api_version
+        with open(identifier, "w") as f:
+            json.dump(data, f, indent=2)
+
+        _logger.info(f"Saved {len(library.definitions)} definitions to '{identifier}'")
+
+    def get_by_identifier(self, identifier: str) -> FixtureDefinition | None:
+        for definition in self._library.definitions:
+            if definition.identifier == identifier:
+                return definition
+
+        return None
+
+    def set_library(self, library: FixtureDefinitionLibrary):
+        self._library = library
+
+    def load_default_library(self):
+        self.load(self.make_generic_libray_filepath())
+
+    @staticmethod
+    def make_generic_libray_filepath():
+        return resources.find(os.path.join("fixture_definition_libraries", "generic.json"))
