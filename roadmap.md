@@ -67,7 +67,7 @@ December 2025
   - [ ] _(by position)_
 - [ ] values (dimmer, color)
 - [ ] opacity
-- [ ] user interface
+- [ ] _(user interface)_
 
 ### Driver
 
@@ -75,6 +75,6 @@ December 2025
 - [ ] source
   - [ ] web server widget
   - [ ] _(OSC widget)_
-- [ ] user interface
 - [ ] fade in/out time
+- [ ] _(user interface)_
 - [ ] _(target change notifies all connected drivers)_
