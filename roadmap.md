@@ -6,12 +6,30 @@ December 2025
 
 ### Fixture definition
 
-- [ ] model
-- [ ] channels
-  - [ ] dimmer
-  - [ ] color
-- [ ] _(manufacturer)_ 
+- [X] _(manufacturer)_ 
+- [X] identifier (@property)
+- [X] model
+- [X] parameter definitions
+- [ ] _(forbidden char : #) ?_
 - [ ] _(mode)_
+
+### Fixture definition store
+
+- [X] load (generic)
+- [X] fixture definition library
+  - [X] api version
+  - [X] name
+- [X] error on invalid api_version loading
+- [X] script to create generic fixture definition library
+- [ ] _(write tests)_
+
+### Parameter definition
+
+- [X] address
+- [X] default value
+- [X] name
+- [X] resolution
+- [X] type (dimmer, color)
 
 ### Patch
 

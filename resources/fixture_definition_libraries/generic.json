@@ -1,0 +1,32 @@
+{
+  "name": "Generic Fixture Definitions",
+  "definitions": [
+    {
+      "parameter_definitions": [
+        {
+          "address": 0,
+          "default_value": 0.0,
+          "name": "Dimmer",
+          "resolution": "simple",
+          "type": "dimmer"
+        }
+      ],
+      "manufacturer": "Generic",
+      "model": "Dimmer 1 Channel"
+    },
+    {
+      "parameter_definitions": [
+        {
+          "address": 0,
+          "default_value": 0.0,
+          "name": "Dimmer",
+          "resolution": "simple",
+          "type": "color_rgb"
+        }
+      ],
+      "manufacturer": "Generic",
+      "model": "Color RGB"
+    }
+  ],
+  "api_version": 1
+}
