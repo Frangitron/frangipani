@@ -4,16 +4,20 @@
 
 December 2025
 
-### Fixture definition
+- [ ] Use interfaces and Injector
+
+### Fixture 
+
+#### Definition
 
 - [X] _(manufacturer)_ 
 - [X] identifier (@property)
 - [X] model
 - [X] parameter definitions
-- [ ] _(forbidden char : #) ?_
+- [ ] _(? forbid char #)_
 - [ ] _(mode)_
 
-### Fixture definition store
+#### Definition store
 
 - [X] load (generic)
 - [X] fixture definition library
@@ -23,7 +27,7 @@ December 2025
 - [X] script to create generic fixture definition library
 - [ ] _(write tests)_
 
-### Parameter definition
+#### Parameter definition
 
 - [X] address
 - [X] default value
@@ -33,13 +37,26 @@ December 2025
 
 ### Patch
 
-- [ ] fixture
-  - [ ] name
-  - [ ] definition
-  - [ ] tags
-  - [ ] universe
-  - [ ] address
-  - [ ] _(position)_
+- [X] name
+- [X] items
+
+#### Address
+
+- [ ] channel
+- [ ] universe
+
+#### Item
+
+- [ ] address
+- [ ] definition
+- [ ] name
+- [ ] tags
+- [ ] _(position)_
+
+#### Store
+
+- [ ] load from a file
+- [ ] save to a file
 
 ### Layer
 
