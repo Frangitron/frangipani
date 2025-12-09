@@ -1,7 +1,4 @@
 import logging
-import os
-
-from pyside6helpers import resources
 
 from frangipani.fixture_definition import (
     FixtureDefinition,

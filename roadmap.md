@@ -4,7 +4,7 @@
 
 December 2025
 
-- [ ] Use interfaces and Injector
+- [X] Use interfaces and Injector
 
 ### Fixture 
 
@@ -42,21 +42,23 @@ December 2025
 
 #### Address
 
-- [ ] channel
-- [ ] universe
+- [X] channel
+- [X] universe
 
 #### Item
 
-- [ ] address
-- [ ] definition
-- [ ] name
-- [ ] tags
+- [X] address
+- [X] definition
+- [X] name
+- [X] tags
 - [ ] _(position)_
 
 #### Store
 
-- [ ] load from a file
-- [ ] save to a file
+- [X] load from a file
+- [X] save to a file
+- [X] script to create demo patch
+- [ ] _(write tests)_
 
 ### Layer
 
@@ -65,6 +67,7 @@ December 2025
   - [ ] _(by position)_
 - [ ] values (dimmer, color)
 - [ ] opacity
+- [ ] user interface
 
 ### Driver
 
@@ -72,4 +75,6 @@ December 2025
 - [ ] source
   - [ ] web server widget
   - [ ] _(OSC widget)_
+- [ ] user interface
+- [ ] fade in/out time
 - [ ] _(target change notifies all connected drivers)_
