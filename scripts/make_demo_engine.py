@@ -2,6 +2,7 @@ import logging
 
 from pythonhelpers.injector import Injector
 
+from frangipani.components.components import Components
 from frangipani.driver import (
     IDriverPoolStore,
     JsonDriverPoolStore,
@@ -22,7 +23,10 @@ from frangipani.patch import (
     IPatchStore,
     JsonPatchStore,
 )
-
+from frangipani.web_server import (
+    WebServer,
+    WebServerConfigurationStore,
+)
 
 if __name__ == "__main__":
 
@@ -61,6 +65,13 @@ if __name__ == "__main__":
     Injector().set_dependencies({
         IDriverPoolStore: driver_pool_store
     })
+
+    #
+    # Web server
+    web_server_configuration_store = WebServerConfigurationStore()
+    web_server_configuration_store.load("demo.webserver.json")
+    Components().web_server = WebServer(configuration=web_server_configuration_store.configuration)
+    Components().web_server.start()
 
     #
     # Engine

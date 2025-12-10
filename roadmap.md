@@ -93,9 +93,7 @@ December 2025
 
 - [X] name
 - [X] target (layer opacity, values)
-- [X] source
-  - [ ] web server widget
-  - [ ] _(OSC widget)_
+- [X] source identifier
 - [X] fade in/out time
 - [X] enabled
 - [ ] _(user interface)_
@@ -108,15 +106,29 @@ December 2025
 - [X] script to create a demo stack
 - [ ] _(write tests)_
 
+#### Driver Updater
+
+- [ ] update inputs
+
 ### Engine
 
+- [X] init
+  - [X] broadcaster universes
+  - [X] solver
 - [X] start/stop
+- [ ] main loop
+  - [ ] update driver inputs
+  - [ ] solve
+  - [ ] convert to DMX
+  - [ ] broadcast
+- [ ] demo script
 - [ ] _(user interface)_
 
 #### Solver
 
 - [ ] basic synchronous solving 
-  - [X] read drivers
+  - [X] read driver sources
+  - [ ] update layer values
   - [ ] _(notify drivers targeting same values)_
   - [ ] update layer values
   - [ ] convert to DMX
@@ -130,3 +142,9 @@ December 2025
 #### Artnet broadcaster
 
 - [X] basic synchronous broadcast
+
+### WebServer
+
+- [X] start/stop
+- [X] load/save configuration
+- [ ] get all values

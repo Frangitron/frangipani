@@ -19,10 +19,10 @@ if __name__ == "__main__":
             Driver(
                 name="DimmerFixture (all parameters)",
                 source=DriverSourceIdentifier(
-                    control_address="dimmer_odd_all"
+                    control_address="dimmer_fixtures_all_parameters"
                 ),
                 target=DriverTargetIdentifier(
-                    layer_name="DimmerFixtures all values",
+                    layer_name="DimmerFixtures all parameters",
                     value_name="All",
                 ),
             ),

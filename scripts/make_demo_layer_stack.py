@@ -18,7 +18,7 @@ if __name__ == "__main__":
         name="Demo Layer Stack",
         layers=[
             Layer(
-                name="DimmerFixtures all values",
+                name="DimmerFixtures all parameters",
                 scope=LayerScopeTag(tags=['Dimmer']),
                 values=[
                     LayerValueScalar(name="All", parameter_selector="*", value=0.0),

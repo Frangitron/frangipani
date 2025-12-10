@@ -21,4 +21,3 @@ class DriverTargetIdentifier:
 
         if self.targets_opacity is not None and self.value_name is not None:
             raise ValueError("Only one of layer_opacity or value_name can be set")
-

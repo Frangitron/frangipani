@@ -139,9 +139,6 @@ if __name__ == "__main__":
         )
     )
 
-    with open("server-demo.json", "w") as file:
-        file.write(configuration.root_control_definition.to_json(indent=2))
-
     web_server = WebServer(configuration)
     web_server.start()
 
