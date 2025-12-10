@@ -3,8 +3,8 @@ import logging
 from pythonhelpers.injector import Injector
 
 from frangipani.driver import (
-    IDriverStore,
-    JsonDriverStore,
+    IDriverPoolStore,
+    JsonDriverPoolStore,
 )
 from frangipani.engine import (
     Engine,
@@ -56,10 +56,10 @@ if __name__ == "__main__":
 
     #
     # Drivers
-    driver_store = JsonDriverStore()
-    driver_store.load("demo.drivers.json")
+    driver_pool_store = JsonDriverPoolStore()
+    driver_pool_store.load("demo.drivers.json")
     Injector().set_dependencies({
-        IDriverStore: driver_store
+        IDriverPoolStore: driver_pool_store
     })
 
     #

@@ -22,7 +22,7 @@ if __name__ == "__main__":
                     control_address="dimmer_odd_all"
                 ),
                 target=DriverTargetIdentifier(
-                    layer_name="Dimmer odd (all parameters)",
+                    layer_name="DimmerFixtures all values",
                     value_name="All",
                 ),
             ),

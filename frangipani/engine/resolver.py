@@ -1,5 +1,7 @@
 from pythonhelpers.injector import Injector
 
+from frangipani.driver.driver import Driver
+from frangipani.driver.pool_store import IDriverPoolStore
 from frangipani.layer.layer import Layer
 from frangipani.layer.scope.base import BaseLayerScope
 from frangipani.patch.patch_item import PatchItem
@@ -10,6 +12,7 @@ class Resolver:
 
     def __init__(self):
         self._patch_store = Injector().inject(IPatchStore)
+        self._driver_pool_store = Injector().inject(IDriverPoolStore)
 
     def patch_items_for_scope(self, scope: BaseLayerScope) -> list[PatchItem]:
         resolved_items = list()
@@ -20,4 +23,9 @@ class Resolver:
         return resolved_items
 
     def drivers_for_layer(self, layer: Layer) -> list[Driver]:
-        return list()
+        drivers = list()
+        for driver in self._driver_pool_store.drivers:
+            if driver.target.is_matching(layer):
+                drivers.append(driver)
+
+        return drivers

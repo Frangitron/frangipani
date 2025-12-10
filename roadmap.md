@@ -115,8 +115,8 @@ December 2025
 
 #### Solver
 
-- [ ] basic synchronous solving
-  - [ ] read drivers
+- [ ] basic synchronous solving 
+  - [X] read drivers
   - [ ] _(notify drivers targeting same values)_
   - [ ] update layer values
   - [ ] convert to DMX
