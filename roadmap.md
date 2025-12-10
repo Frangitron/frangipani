@@ -62,12 +62,31 @@ December 2025
 
 ### Layer
 
-- [ ] scope (fixture selection)
-  - [ ] by tag
+- [X] name
+- [X] scope (fixture selection)
+  - [X] by tag
   - [ ] _(by position)_
 - [ ] values (dimmer, color)
-- [ ] opacity
+- [X] opacity
 - [ ] _(user interface)_
+- [X] stack (name, layers)
+
+#### Stack Store
+
+- [X] load from a file
+- [X] save to a file
+- [X] script to create a demo stack
+- [ ] _(write tests)_
+
+#### Value
+
+- [X] selector (parameter name and wildcards)
+  - [ ] _(use tags in the future ?)_
+- [X] type (subclass of base type)
+  - [X] scalar \[0..1\]
+  - [ ] color \[R, G, B\]
+  - [ ] _(angle \[-360..360\])_
+  - [ ] _(speed)_
 
 ### Driver
 
@@ -78,3 +97,21 @@ December 2025
 - [ ] fade in/out time
 - [ ] _(user interface)_
 - [ ] _(target change notifies all connected drivers)_
+
+### Engine
+
+- [ ] start/stop
+- [ ] _(user interface)_
+
+#### Solver
+
+- [ ] main loop
+  - [ ] read drivers
+  - [ ] _(notify drivers targeting same values)_
+  - [ ] update layer values
+  - [ ] convert to DMX
+
+#### Artnet broadcaster
+
+- [ ] main loop
+  - [ ] send DMX
