@@ -11,6 +11,5 @@ T = TypeVar('T')
 @dataclass
 class BaseLayerValue(Generic[T]):
     name: str
-    selector: str
+    parameter_selector: str
     value: T
-

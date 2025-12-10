@@ -18,30 +18,38 @@ if __name__ == "__main__":
         name="Demo Layer Stack",
         layers=[
             Layer(
-                name="Demo Layer 1 (all)",
-                scope=LayerScopeTag(tags=['Odd', 'Dimmer']),
+                name="DimmerFixtures all values",
+                scope=LayerScopeTag(tags=['Dimmer']),
                 values=[
-                    LayerValueScalar(name="All", selector="*", value=0.0),
+                    LayerValueScalar(name="All", parameter_selector="*", value=0.0),
                 ],
             ),
             Layer(
-                name="Demo Layer 2 (dimmers)",
+                name="RGBFixtures dimmer values",
+                scope=LayerScopeTag(tags=['RGB']),
+                values=[
+                    LayerValueScalar(name="Dimmers", parameter_selector="dimmer*", value=1.0),
+                ],
+            ),
+            Layer(
+                name="Blackout",
                 scope=LayerScopeAll(),
                 values=[
-                    LayerValueScalar(name="Dimmers", selector="dimmer*", value=1.0),
+                    LayerValueScalar(name="Dimmers", parameter_selector="dimmer*", value=0.0),
                 ],
+                opacity=0.0,
             ),
         ],
     )
 
     store = JsonLayerStackStore()
     store.set_stack(layer_stack)
-    store.save("demo_layer_stack.json")
+    store.save("demo.layerstack.json")
 
-    _logger.info(f"Saved layer stack to 'layer_stack.json'")
+    _logger.info(f"Saved layer stack to 'demo.layerstack.json'")
 
     store = JsonLayerStackStore()
-    store.load("demo_layer_stack.json")
+    store.load("demo.layerstack.json")
 
     from pprint import pprint
-    pprint(store.stack)
+    pprint(store.layers)

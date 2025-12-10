@@ -14,11 +14,6 @@ _logger = logging.getLogger("PatchStore")
 
 
 class JsonPatchStore(IPatchStore):
-    def __init__(self):
-        self._patch: Patch = Patch(
-            name="Internal",
-        )
-        self._fixture_definition_store = Injector().inject(IFixtureDefinitionStore)
 
     def load(self, identifier: str) -> None:
         _logger.info(f"Loading patch from '{identifier}'")
@@ -49,9 +44,6 @@ class JsonPatchStore(IPatchStore):
         patch_storable: PatchStorable = PatchStorable.from_patch(self._patch)
         with open(identifier, "w") as file:
             file.write(patch_storable.to_json(indent=2))
-
-    def set_patch(self, patch: Patch) -> None:
-        self._patch = patch
 
     def get_by_address(self, address: PatchAddress) -> PatchItem | None:
         for item in self._patch.items:

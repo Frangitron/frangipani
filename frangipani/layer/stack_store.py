@@ -1,9 +1,12 @@
 from abc import ABC, abstractmethod
 
+from frangipani.layer import Layer
 from frangipani.layer.stack import LayerStack
 
 
 class ILayerStackStore(ABC):
+    def __init__(self):
+        self._stack: LayerStack = LayerStack(name="Internal")
 
     @abstractmethod
     def load(self, identifier: str) -> None:
@@ -13,11 +16,9 @@ class ILayerStackStore(ABC):
     def save(self, identifier: str) -> None:
         pass
 
-    @abstractmethod
     def set_stack(self, stack: LayerStack) -> None:
-        pass
+        self._stack = stack
 
     @property
-    @abstractmethod
-    def stack(self) -> LayerStack:
-        pass
+    def layers(self) -> list[Layer]:
+        return self._stack.layers

@@ -80,6 +80,7 @@ December 2025
 
 #### Value
 
+- [X] name
 - [X] selector (parameter name and wildcards)
   - [ ] _(use tags in the future ?)_
 - [X] type (subclass of base type)
@@ -90,28 +91,42 @@ December 2025
 
 ### Driver
 
-- [ ] target (layer opacity)
-- [ ] source
+- [X] name
+- [X] target (layer opacity, values)
+- [X] source
   - [ ] web server widget
   - [ ] _(OSC widget)_
-- [ ] fade in/out time
+- [X] fade in/out time
+- [X] enabled
 - [ ] _(user interface)_
 - [ ] _(target change notifies all connected drivers)_
 
+#### Driver Pool Store
+
+- [X] load from a file
+- [X] save to a file
+- [X] script to create a demo stack
+- [ ] _(write tests)_
+
 ### Engine
 
-- [ ] start/stop
+- [X] start/stop
 - [ ] _(user interface)_
 
 #### Solver
 
-- [ ] main loop
+- [ ] basic synchronous solving
   - [ ] read drivers
   - [ ] _(notify drivers targeting same values)_
   - [ ] update layer values
   - [ ] convert to DMX
 
+#### Resolver
+
+- [X] patch items for scope
+- [ ] drivers for layer
+- [ ] _(caching and invalidation)_  
+
 #### Artnet broadcaster
 
-- [ ] main loop
-  - [ ] send DMX
+- [X] basic synchronous broadcast

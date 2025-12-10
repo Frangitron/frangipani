@@ -8,4 +8,6 @@ from frangipani.layer.scope.base import BaseLayerScope
 @dataclass_json
 @dataclass
 class LayerScopeAll(BaseLayerScope):
-    pass
+
+    def is_matching(self, scope: BaseLayerScope) -> bool:
+        return True

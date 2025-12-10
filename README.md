@@ -5,6 +5,7 @@ Lighting software
 ## Lighting console concepts
 
 ### Physical world related
+
 - position
 - move when dark
 
@@ -15,3 +16,7 @@ Lighting software
 ## Roadmap
 
 See [roadmap.md](roadmap.md)
+
+## Notes
+
+- Templatize IStore/Store ?
