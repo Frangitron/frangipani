@@ -1,9 +1,6 @@
-import os
-
 import json
 import logging
-
-from pyside6helpers import resources
+from importlib import resources
 
 from frangipani.fixture_definition.fixture_definition import FixtureDefinition
 from frangipani.fixture_definition.fixture_definition_library import FixtureDefinitionLibrary
@@ -57,5 +54,6 @@ class JsonFixtureDefinitionStore(IFixtureDefinitionStore):
         self.load(self.make_generic_libray_filepath())
 
     @staticmethod
-    def make_generic_libray_filepath():
-        return resources.find(os.path.join("fixture_definition_libraries", "generic.json"))
+    def make_generic_libray_filepath() -> str:
+        with resources.path("frangipani.resources.fixture_definition_libraries", "generic.json") as path:
+            return str(path)
