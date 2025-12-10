@@ -22,8 +22,8 @@ class JsonFixtureDefinitionStore(IFixtureDefinitionStore):
     def load(self, identifier: str) -> None:
         _logger.info(f"Loading definitions from '{identifier}'")
 
-        with open(identifier, "r") as f:
-            library = FixtureDefinitionLibrary.from_json(f.read())
+        with (open(identifier, "r") as file):
+            library = FixtureDefinitionLibrary.from_json(file.read())
 
         if library.api_version != FixtureDefinitionLibrary.api_version:
             raise Exception(
@@ -38,8 +38,8 @@ class JsonFixtureDefinitionStore(IFixtureDefinitionStore):
 
         data = self._library.to_dict()
         data['api_version'] = self._library.api_version
-        with open(identifier, "w") as f:
-            json.dump(data, f, indent=2)
+        with open(identifier, "w") as file:
+            json.dump(data, file, indent=2)
 
         _logger.info(f"Saved {len(self._library.definitions)} definitions to '{identifier}'")
 
