@@ -30,10 +30,10 @@ class SharedMemoryManager:
         self._memory = SharedMemory(name=name)
 
     def get_value(self, control_address: str) -> float | bool:
-        return 0.0
+        raise NotImplementedError
 
     def get_all_values(self) -> dict[str, float | bool]:
-        return {}
+        raise NotImplementedError
 
     def cleanup(self):
         if self._memory is not None:
