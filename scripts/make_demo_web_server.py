@@ -27,14 +27,14 @@ if __name__ == "__main__":
             placement=Placement(column=0, row=0),
             controls=[
                 Fader(
-                    address="/dimmer_fixtures_all_parameters",
+                    address="dimmer_fixtures_all_parameters",
                     label="DimFix all params",
                     placement=Placement(column=0, row=0),
                     orientation=ControlOrientationEnum.Vertical,
                     value=0.0
                 ),
                 Fader(
-                    address="/master_dimmer",
+                    address="master_dimmer",
                     label="Master Dimmer",
                     placement=Placement(column=1, row=0),
                     orientation=ControlOrientationEnum.Vertical,
