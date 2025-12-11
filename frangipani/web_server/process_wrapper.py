@@ -1,11 +1,10 @@
 from multiprocessing.shared_memory import SharedMemory
 from multiprocessing.synchronize import Event as EventType
+import asyncio
 import atexit
 import logging
 import signal
 import struct
-import sys
-import time
 
 from frangipani_web_server.configuration import WebServerConfiguration
 from frangipani_web_server.message.base import BaseMessage
@@ -22,14 +21,6 @@ def _cleanup(shared_memory):
     if shared_memory is not None:
         shared_memory.close()
     _logger.info("Resources cleaned up")
-
-
-def _signal_handler(sig, frame):
-    """
-    Handle signals (e.g., SIGINT, SIGTERM) to exit gracefully.
-    """
-    _logger.info(f"\nReceived signal {sig}, exiting...")
-    sys.exit(0)
 
 
 def _make_callback(shared_memory: SharedMemory, control_map: dict):
@@ -56,18 +47,31 @@ def main_loop(configuration: WebServerConfiguration, shared_memory_name: str, st
         manager = SharedMemoryManager(configuration.root_control_definition)
         control_map = manager.control_map
 
-        atexit.register(lambda: _cleanup(shared_memory))
+        web_server = FrangipaniWebServer(configuration)
 
-        signal.signal(signal.SIGINT, _signal_handler)  # Ctrl+C
-        signal.signal(signal.SIGTERM, _signal_handler)  # Termination signal
+        atexit.register(lambda: _cleanup(shared_memory))
 
         configuration.message_callback = _make_callback(shared_memory, control_map)
 
-        web_server = FrangipaniWebServer(configuration)
-        web_server.start()
+        # Run the async loop
+        async def run_server():
+            await web_server.start_async()
 
-        while not stop_event.is_set():
-            time.sleep(0.1)
+            # Wait until the stop event is set
+            while not stop_event.is_set():
+                await asyncio.sleep(0.1)
+
+            await web_server.stop_async()
+
+        # Handle signals by setting the event (which breaks the loop above)
+        def signal_handler(signum, frame):
+            _logger.info(f"Received signal {signum}, stopping...")
+            stop_event.set()
+
+        signal.signal(signal.SIGINT, signal_handler)
+        signal.signal(signal.SIGTERM, signal_handler)
+
+        asyncio.run(run_server())
 
     except KeyboardInterrupt:
         _logger.info("\nKeyboard interrupt received, exiting...")
