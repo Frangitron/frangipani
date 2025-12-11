@@ -5,8 +5,8 @@ from pythonartnet.broadcaster import ArtnetBroadcaster
 from pythonhelpers.injector import Injector
 
 from frangipani.engine.configuration import EngineConfiguration
+from frangipani.engine.driver_updater import DriverUpdater
 from frangipani.engine.solver import Solver
-from frangipani.driver.updater import DriverUpdater
 from frangipani.patch.store import IPatchStore
 
 
