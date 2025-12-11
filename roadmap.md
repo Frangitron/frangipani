@@ -5,6 +5,7 @@
 December 2025
 
 - [X] Use interfaces and Injector
+- [ ] Scalars everywhere !!
 
 ### Fixture 
 
@@ -108,7 +109,7 @@ December 2025
 
 #### Driver Updater
 
-- [ ] update inputs
+- [X] update inputs
 
 ### Engine
 
@@ -116,27 +117,28 @@ December 2025
   - [X] broadcaster universes
   - [X] solver
 - [X] start/stop
-- [ ] main loop
-  - [ ] update driver inputs
-  - [ ] solve
-  - [ ] convert to DMX
-  - [ ] broadcast
-- [ ] demo script
+- [X] main loop
+  - [X] update driver inputs
+  - [X] solve
+  - [X] convert to DMX
+  - [X] broadcast
+- [X] demo script
 - [ ] _(user interface)_
 
 #### Solver
 
 - [ ] basic synchronous solving 
   - [X] read driver sources
-  - [ ] update layer values
+  - [X] update layer values
+    - [ ] fade in/out (only for buttons ?)
   - [ ] _(notify drivers targeting same values)_
-  - [ ] update layer values
-  - [ ] convert to DMX
+  - [X] update layer values
+  - [X] convert to DMX
 
 #### Resolver
 
 - [X] patch items for scope
-- [ ] drivers for layer
+- [X] drivers for layer
 - [ ] _(caching and invalidation)_  
 
 #### Artnet broadcaster
@@ -147,4 +149,4 @@ December 2025
 
 - [X] start/stop
 - [X] load/save configuration
-- [ ] get all values
+- [X] get all values
