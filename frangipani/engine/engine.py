@@ -16,7 +16,7 @@ class Engine:
 
         self._initialized = False
         self._previous_broadcast_time = 0
-        self._target_broadcast_interval = 1.0 / float(configuration.artnet_target_rate)
+        self._target_broadcast_interval = 1.0 / float(configuration.artnet_target_rate + 2)  # FIXME magic number
 
         self._artnet_broadcaster = ArtnetBroadcaster(
             target_ip=configuration.artnet_target_ip,
@@ -26,7 +26,14 @@ class Engine:
         self._patch_store = Injector().inject(IPatchStore)
         self._solver = Solver()
 
+    def clear(self):
+        self._artnet_broadcaster.clear()
+        self._solver.clear()
+        self._initialized = False
+
     def initialize(self):
+        self.clear()
+
         for universe_number in self._patch_store.list_universes():
             self._artnet_broadcaster.add_universe(universe_number)
 
