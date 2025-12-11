@@ -19,6 +19,9 @@ class Solver:
         self._resolver = Resolver()
         self._universe_buffers: dict[int, bytearray] = {}
 
+    def clear(self):
+        self._universe_buffers.clear()
+
     def initialize(self):
         print(f"Layers in stack : {len(self._layer_stack_store.layers)}")
 
