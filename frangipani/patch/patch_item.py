@@ -19,7 +19,7 @@ class PatchItem:
         self.at_default()
 
     def set_parameter(self, name: str, value: float, opacity: float) -> None:
-        self._parameter_values[name] = value * opacity + self._parameter_values[name] * (1 - opacity)
+        self._parameter_values[name] = min(max(0.0, value * opacity + self._parameter_values[name] * (1 - opacity)), 1.0)
 
     def get_parameter(self, name: str) -> float:
         return self._parameter_values[name]

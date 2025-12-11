@@ -67,7 +67,7 @@ class Solver:
             for parameter_definition in patch_item.definition.parameter_definitions:
                 scalar = patch_item.get_parameter(parameter_definition.name)
                 address = patch_item.address.channel + parameter_definition.address - 1
-                self._universe_buffers[patch_item.address.universe][address] = int(scalar * 255)
+                self._universe_buffers[patch_item.address.universe][address] = int(round(scalar * 255))
 
     def get_dmx_buffer(self, universe: int) -> bytearray:
         return self._universe_buffers[universe]

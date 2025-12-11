@@ -30,6 +30,8 @@ class Driver:
         if value is not None:
             value = float(value)
 
+        value = min(max(0.0, value), 1.0)
+
         if self._previous_value == value:
             return
         self._previous_value = value

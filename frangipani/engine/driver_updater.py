@@ -11,8 +11,10 @@ class DriverUpdater:
         self._web_server = Components().web_server
 
     def read_sources(self) -> None:
-        # FIXME scalars everywhere
         all_values = self._web_server.get_all_values()
+
+        for control, value in all_values.items():
+            all_values[control] = min(max(0.0, float(value)), 1.0)
 
         for driver in self._driver_pool_store.drivers:
             source_identifier  = driver.info.source_identifier
