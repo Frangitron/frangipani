@@ -10,9 +10,10 @@ from frangipani.driver.target_identifier import DriverTargetIdentifier
 @dataclass
 class Driver:
     name: str
-    target: DriverTargetIdentifier
-    source: DriverSourceIdentifier
+    target_identifier: DriverTargetIdentifier
+    source_identifier: DriverSourceIdentifier
 
+    source_value: float | bool | None = None
     enabled: bool = True
     fade_in_time: float = 0.0
     fade_out_time: float = 0.0
