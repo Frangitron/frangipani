@@ -15,8 +15,5 @@ class DriverUpdater:
         all_values = self._web_server.get_all_values()
 
         for driver in self._driver_pool_store.drivers:
-            source_identifier  = driver.source_identifier
-            if driver.inverted:
-                driver.source_value = 1.0 - all_values[source_identifier.control_address]
-            else:
-                driver.source_value = all_values[source_identifier.control_address]
+            source_identifier  = driver.info.source_identifier
+            driver.set_source_value(all_values[source_identifier.control_address])

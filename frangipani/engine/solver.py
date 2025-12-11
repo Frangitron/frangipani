@@ -41,16 +41,16 @@ class Solver:
             drivers = self._resolver.drivers_for_layer(layer)
 
             for driver in drivers:
-                if not driver.enabled:
+                if not driver.info.enabled:
                     continue
 
-                if driver.target_identifier.targets_opacity:
-                    layer.opacity = driver.source_value
+                if driver.info.target_identifier.targets_opacity:
+                    layer.opacity = driver.value
 
                 else:
                     layer.set_value(
-                        name=driver.target_identifier.value_name,
-                        new_value=driver.source_value
+                        name=driver.info.target_identifier.value_name,
+                        new_value=driver.value
                     )
 
             for value in layer.values:

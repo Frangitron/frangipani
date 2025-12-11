@@ -6,6 +6,7 @@ December 2025
 
 - [X] Use interfaces and Injector
 - [ ] Scalars everywhere !!
+- [ ] StorableMixin interface for JSON serialization
 
 ### Fixture 
 

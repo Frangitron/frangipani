@@ -1,20 +1,20 @@
-from dataclasses import dataclass
-
-from dataclasses_json import dataclass_json
-
-from frangipani.driver.source_identifier import DriverSourceIdentifier
-from frangipani.driver.target_identifier import DriverTargetIdentifier
+from frangipani.driver.driver_info import DriverInfo
 
 
-@dataclass_json
-@dataclass
 class Driver:
-    name: str
-    target_identifier: DriverTargetIdentifier
-    source_identifier: DriverSourceIdentifier
+    def __init__(self, info: DriverInfo):
+        self.info = info
+        self._source_value: float | bool | None = None
 
-    source_value: float | bool | None = None
-    enabled: bool = True
-    fade_in_time: float = 0.0
-    fade_out_time: float = 0.0
-    inverted: bool = False
+    @property
+    def value(self) -> float | bool | None:
+        return self._source_value
+
+    def set_source_value(self, value: float | bool | None) -> None:
+        if self.info.inverted:
+            self._source_value = 1.0 - value
+        else:
+            self._source_value = value
+
+    def __repr__(self):
+        return f"<{self.__class__.__name__}(info={self.info})>"

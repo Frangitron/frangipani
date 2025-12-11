@@ -1,6 +1,6 @@
 {
   "name": "Demo Driver Pool",
-  "drivers": [
+  "driver_infos": [
     {
       "name": "DimmerFixture (all parameters)",
       "target_identifier": {
@@ -11,7 +11,6 @@
       "source_identifier": {
         "control_address": "dimmer_fixtures_all_parameters"
       },
-      "source_value": null,
       "enabled": true,
       "fade_in_time": 0.0,
       "fade_out_time": 0.0,
@@ -27,7 +26,6 @@
       "source_identifier": {
         "control_address": "master_dimmer"
       },
-      "source_value": null,
       "enabled": true,
       "fade_in_time": 0.0,
       "fade_out_time": 0.0,
@@ -43,10 +41,9 @@
       "source_identifier": {
         "control_address": "blackout"
       },
-      "source_value": null,
       "enabled": true,
-      "fade_in_time": 0.0,
-      "fade_out_time": 0.0,
+      "fade_in_time": 1.0,
+      "fade_out_time": 1.0,
       "inverted": false
     }
   ]

@@ -1,13 +1,12 @@
 import logging
 
 from frangipani.driver import (
-    Driver,
+    DriverInfo,
     DriverPool,
     DriverSourceIdentifier,
     DriverTargetIdentifier,
     JsonDriverPoolStore,
 )
-
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
@@ -15,8 +14,8 @@ if __name__ == "__main__":
 
     pool = DriverPool(
         name="Demo Driver Pool",
-        drivers=[
-            Driver(
+        driver_infos=[
+            DriverInfo(
                 name="DimmerFixture (all parameters)",
                 source_identifier=DriverSourceIdentifier(
                     control_address="dimmer_fixtures_all_parameters"
@@ -26,7 +25,7 @@ if __name__ == "__main__":
                     value_name="All",
                 ),
             ),
-            Driver(
+            DriverInfo(
                 name="Master Dimmer",
                 source_identifier=DriverSourceIdentifier(
                     control_address="master_dimmer"
@@ -37,7 +36,7 @@ if __name__ == "__main__":
                 ),
                 inverted=True,
             ),
-            Driver(
+            DriverInfo(
                 name="Blackout",
                 source_identifier=DriverSourceIdentifier(
                     control_address="blackout"
@@ -46,6 +45,8 @@ if __name__ == "__main__":
                     layer_name="Blackout",
                     targets_opacity=True,
                 ),
+                fade_in_time=1.0,
+                fade_out_time=1.0,
             )
         ]
     )
@@ -59,4 +60,4 @@ if __name__ == "__main__":
     store = JsonDriverPoolStore()
     store.load("demo.drivers.json")
     for driver in pool.drivers:
-        assert driver == store.get_by_name(driver.name)
+        assert driver.info.name == store.get_by_name(driver.info.name).info.name

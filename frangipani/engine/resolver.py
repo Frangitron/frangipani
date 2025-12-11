@@ -25,7 +25,7 @@ class Resolver:
     def drivers_for_layer(self, layer: Layer) -> list[Driver]:
         drivers = list()
         for driver in self._driver_pool_store.drivers:
-            if driver.target_identifier.is_matching(layer):
+            if driver.info.target_identifier.is_matching(layer):
                 drivers.append(driver)
 
         return drivers
