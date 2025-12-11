@@ -37,7 +37,7 @@ class Engine:
         self.clear()
 
         for universe_number in self._patch_store.list_universes():
-            self._artnet_broadcaster.add_universe(universe_number)
+            self._artnet_broadcaster.add_universe(universe_number - 1)
 
         self._solver.initialize()
 
@@ -61,7 +61,7 @@ class Engine:
             self._solver.solve()
 
             for universe in self._artnet_broadcaster.universes.values():
-                universe.buffer = self._solver.get_dmx_buffer(universe=universe.number)
+                universe.buffer = self._solver.get_dmx_buffer(universe=universe.number + 1)
 
             self._artnet_broadcaster.send_data_synced()
 
