@@ -23,6 +23,10 @@ from frangipani.patch import (
     IPatchStore,
     JsonPatchStore,
 )
+from frangipani.time_provider import (
+    ITimeProvider,
+    TimeProvider,
+)
 from frangipani.web_server import (
     WebServer,
     WebServerConfigurationStore,
@@ -33,6 +37,12 @@ if __name__ == "__main__":
     #
     # Init
     logger = logging.getLogger("Script:DemoEngine")
+
+    #
+    # Time provider
+    Injector().set_dependencies({
+        ITimeProvider: TimeProvider(),
+    })
 
     #
     # Fixture definitions

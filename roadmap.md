@@ -96,7 +96,8 @@ December 2025
 - [X] name
 - [X] target (layer opacity, values)
 - [X] source identifier
-- [X] fade in/out time
+- [ ] fade in/out
+  - [ ] use increments and time divisions (similar to audio compressor)
 - [X] enabled
 - [ ] _(user interface)_
 - [ ] _(target change notifies all connected drivers)_
@@ -152,3 +153,7 @@ December 2025
 - [X] load/save configuration
 - [X] get all values
 - [X] fix ungraceful shutdown
+
+### TimeProvider
+
+- [X] now as float

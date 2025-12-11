@@ -1,5 +1,7 @@
 import logging
 
+from pythonhelpers.injector import Injector
+
 from frangipani.driver import (
     DriverInfo,
     DriverPool,
@@ -7,10 +9,19 @@ from frangipani.driver import (
     DriverTargetIdentifier,
     JsonDriverPoolStore,
 )
+from frangipani.time_provider import (
+    ITimeProvider,
+    TimeProvider,
+)
+
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     _logger = logging.getLogger("Script:MakeDemoDriverPool")
+
+    Injector().set_dependencies({
+        ITimeProvider: TimeProvider(),
+    })
 
     pool = DriverPool(
         name="Demo Driver Pool",
