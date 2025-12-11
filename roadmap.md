@@ -132,7 +132,7 @@ December 2025
 - [ ] basic synchronous solving 
   - [X] read driver sources
   - [X] update layer values
-    - [ ] fade in/out (only for buttons ?)
+    - [X] fade in/out
   - [ ] _(notify drivers targeting same values)_
   - [X] update layer values
   - [X] convert to DMX
