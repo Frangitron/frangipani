@@ -47,11 +47,10 @@ def main_loop(configuration: WebServerConfiguration, shared_memory_name: str, st
         manager = SharedMemoryManager(configuration.root_control_definition)
         control_map = manager.control_map
 
+        configuration.message_callback = _make_callback(shared_memory, control_map)
         web_server = FrangipaniWebServer(configuration)
 
         atexit.register(lambda: _cleanup(shared_memory))
-
-        configuration.message_callback = _make_callback(shared_memory, control_map)
 
         # Run the async loop
         async def run_server():
