@@ -18,9 +18,9 @@
       "inverted": false
     },
     {
-      "name": "Blackout",
+      "name": "Master Dimmer",
       "target_identifier": {
-        "layer_name": "Blackout",
+        "layer_name": "Master Dimmer",
         "value_name": null,
         "targets_opacity": true
       },
@@ -32,6 +32,22 @@
       "fade_in_time": 0.0,
       "fade_out_time": 0.0,
       "inverted": true
+    },
+    {
+      "name": "Blackout",
+      "target_identifier": {
+        "layer_name": "Blackout",
+        "value_name": null,
+        "targets_opacity": true
+      },
+      "source_identifier": {
+        "control_address": "blackout"
+      },
+      "source_value": null,
+      "enabled": true,
+      "fade_in_time": 0.0,
+      "fade_out_time": 0.0,
+      "inverted": false
     }
   ]
 }

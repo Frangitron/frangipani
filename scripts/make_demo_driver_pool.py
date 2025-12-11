@@ -27,15 +27,25 @@ if __name__ == "__main__":
                 ),
             ),
             Driver(
-                name="Blackout",
+                name="Master Dimmer",
                 source_identifier=DriverSourceIdentifier(
                     control_address="master_dimmer"
                 ),
                 target_identifier=DriverTargetIdentifier(
-                    layer_name="Blackout",
+                    layer_name="Master Dimmer",
                     targets_opacity=True
                 ),
                 inverted=True,
+            ),
+            Driver(
+                name="Blackout",
+                source_identifier=DriverSourceIdentifier(
+                    control_address="blackout"
+                ),
+                target_identifier=DriverTargetIdentifier(
+                    layer_name="Blackout",
+                    targets_opacity=True,
+                ),
             )
         ]
     )

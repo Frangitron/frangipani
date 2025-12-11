@@ -12,7 +12,7 @@ class SharedMemoryManager:
     def __init__(self, root_control_definition: BaseControl):
         self._root_control_definition = root_control_definition
         self._memory: SharedMemory | None = None
-        self._control_map: dict[str, tuple[int, str]] = {}
+        self._control_map: dict[str, tuple[int, str, float]] = {}
         self._buffer_size = 0
         self._build_map()
 
@@ -23,14 +23,17 @@ class SharedMemoryManager:
         def traverse(control: BaseControl):
             if isinstance(control, BaseInputControl):
                 fmt = ""
+                factor = 1.0  # FIXME scalars everywhere
                 # bool is a subclass of int, so check bool first
                 if isinstance(control.value, bool):
                     fmt = "?"
+                    factor = 1.0
                 elif isinstance(control.value, (int, float)):
                     fmt = "d"
+                    factor = .01
 
                 if fmt:
-                    self._control_map[control.address] = (self._buffer_size, fmt)  # TODO make this a dataclass
+                    self._control_map[control.address] = (self._buffer_size, fmt, factor)  # TODO make this a dataclass
                     self._buffer_size += struct.calcsize(fmt)
 
             elif isinstance(control, Group):
@@ -40,7 +43,7 @@ class SharedMemoryManager:
         traverse(self._root_control_definition)
 
     @property
-    def control_map(self) -> dict[str, tuple[int, str]]:
+    def control_map(self) -> dict[str, tuple[int, str, float]]:
         return self._control_map
 
     def create_from_controls(self) -> str:
@@ -58,9 +61,8 @@ class SharedMemoryManager:
     def _write_initial_values(self):
         def traverse(control: BaseControl):
             if isinstance(control, BaseInputControl) and control.address in self._control_map:
-                offset, fmt = self._control_map[control.address]
-                val = control.value
-                struct.pack_into(fmt, self._memory.buf, offset, val)
+                offset, fmt, factor = self._control_map[control.address]
+                struct.pack_into(fmt, self._memory.buf, offset, control.value * factor)
 
             if isinstance(control, Group):
                 for child in control.controls:
@@ -82,12 +84,12 @@ class SharedMemoryManager:
         if control_address not in self._control_map:
             raise KeyError(f"Control {control_address} not found in shared memory map")
 
-        offset, fmt = self._control_map[control_address]
+        offset, fmt, _ = self._control_map[control_address]
         return struct.unpack_from(fmt, self._memory.buf, offset)[0]
 
     def get_all_values(self) -> dict[str, float | bool]:
         result = {}
-        for control_id, (offset, fmt) in self._control_map.items():
+        for control_id, (offset, fmt, _) in self._control_map.items():
             val = struct.unpack_from(fmt, self._memory.buf, offset)[0]
             result[control_id] = val
         return result

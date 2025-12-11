@@ -38,6 +38,21 @@
       ]
     },
     {
+      "name": "Master Dimmer",
+      "scope": {
+        "__type__": "LayerScopeAll"
+      },
+      "opacity": 0.0,
+      "values": [
+        {
+          "name": "Dimmers",
+          "parameter_selector": "dimmer*",
+          "value": 0.0,
+          "__type__": "LayerValueScalar"
+        }
+      ]
+    },
+    {
       "name": "Blackout",
       "scope": {
         "__type__": "LayerScopeAll"

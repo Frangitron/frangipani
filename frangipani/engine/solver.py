@@ -42,12 +42,12 @@ class Solver:
                     continue
 
                 if driver.target_identifier.targets_opacity:
-                    layer.opacity = driver.source_value / 100.0
+                    layer.opacity = driver.source_value
 
                 else:
                     layer.set_value(
                         name=driver.target_identifier.value_name,
-                        new_value=driver.source_value / 100.0
+                        new_value=driver.source_value
                     )
 
             for value in layer.values:
@@ -63,7 +63,7 @@ class Solver:
         for patch_item in self._patch_store.items:
             for parameter_definition in patch_item.definition.parameter_definitions:
                 scalar = patch_item.get_parameter(parameter_definition.name)
-                address = patch_item.address.channel + parameter_definition.address
+                address = patch_item.address.channel + parameter_definition.address - 1
                 self._universe_buffers[patch_item.address.universe][address] = int(scalar * 255)
 
     def get_dmx_buffer(self, universe: int) -> bytearray:

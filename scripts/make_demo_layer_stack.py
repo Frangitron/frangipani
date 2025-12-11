@@ -32,6 +32,14 @@ if __name__ == "__main__":
                 ],
             ),
             Layer(
+                name="Master Dimmer",
+                scope=LayerScopeAll(),
+                values=[
+                    LayerValueScalar(name="Dimmers", parameter_selector="dimmer*", value=0.0),
+                ],
+                opacity=0.0,
+            ),
+            Layer(
                 name="Blackout",
                 scope=LayerScopeAll(),
                 values=[
