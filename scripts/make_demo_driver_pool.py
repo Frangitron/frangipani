@@ -27,13 +27,23 @@ if __name__ == "__main__":
         name="Demo Driver Pool",
         driver_infos=[
             DriverInfo(
-                name="DimmerFixture (all parameters)",
+                name="Spots Dimmer",
                 source_identifier=DriverSourceIdentifier(
-                    control_address="dimmer_fixtures_all_parameters"
+                    control_address="spot_dimmer"
                 ),
                 target_identifier=DriverTargetIdentifier(
-                    layer_name="DimmerFixtures all parameters",
-                    value_name="All",
+                    layer_name="Spots",
+                    value_name="Dimmer",
+                ),
+            ),
+            DriverInfo(
+                name="RGB Dimmer",
+                source_identifier=DriverSourceIdentifier(
+                    control_address="rgb_dimmer"
+                ),
+                target_identifier=DriverTargetIdentifier(
+                    layer_name="RGB",
+                    value_name="Dimmer",
                 ),
             ),
             DriverInfo(

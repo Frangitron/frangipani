@@ -2,14 +2,29 @@
   "name": "Demo Driver Pool",
   "driver_infos": [
     {
-      "name": "DimmerFixture (all parameters)",
+      "name": "Spots Dimmer",
       "target_identifier": {
-        "layer_name": "DimmerFixtures all parameters",
-        "value_name": "All",
+        "layer_name": "Spots",
+        "value_name": "Dimmer",
         "targets_opacity": null
       },
       "source_identifier": {
-        "control_address": "dimmer_fixtures_all_parameters"
+        "control_address": "spot_dimmer"
+      },
+      "enabled": true,
+      "fade_in_time": 0.0,
+      "fade_out_time": 0.0,
+      "inverted": false
+    },
+    {
+      "name": "RGB Dimmer",
+      "target_identifier": {
+        "layer_name": "RGB",
+        "value_name": "Dimmer",
+        "targets_opacity": null
+      },
+      "source_identifier": {
+        "control_address": "rgb_dimmer"
       },
       "enabled": true,
       "fade_in_time": 0.0,

@@ -36,26 +36,38 @@ if __name__ == "__main__":
         items=[
             PatchItem(
                 address=PatchAddress(universe=1, channel=1),
-                name="Dimmer 1",
-                tags=["Dimmer", "Odd"],
+                name="Face front",
+                tags=["spot", "face", "front"],
                 definition=dimmer_definition
             ),
             PatchItem(
                 address=PatchAddress(universe=1, channel=2),
-                name="Dimmer 2",
-                tags=["Dimmer", "Even"],
+                name="Face back",
+                tags=["spot", "face", "back"],
                 definition=dimmer_definition
             ),
             PatchItem(
                 address=PatchAddress(universe=1, channel=3),
-                name="RGB 1",
-                tags=["RGB", "Odd"],
-                definition=rgb_color_definition
+                name="Latéral cour",
+                tags=["spot", "lateral", "left"],
+                definition=dimmer_definition
+            ),
+            PatchItem(
+                address=PatchAddress(universe=1, channel=4),
+                name="Latéral jardin",
+                tags=["spot", "lateral", "right"],
+                definition=dimmer_definition
+            ),
+            PatchItem(
+                address=PatchAddress(universe=1, channel=5),
+                name="Contre",
+                tags=["spot", "back"],
+                definition=dimmer_definition
             ),
             PatchItem(
                 address=PatchAddress(universe=1, channel=6),
-                name="RGB 1",
-                tags=["RGB", "Even"],
+                name="Bowl",
+                tags=["rgb", "back", "color"],
                 definition=rgb_color_definition
             ),
         ],

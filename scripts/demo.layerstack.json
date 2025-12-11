@@ -2,35 +2,35 @@
   "name": "Demo Layer Stack",
   "layers": [
     {
-      "name": "DimmerFixtures all parameters",
+      "name": "Spots",
       "scope": {
         "tags": [
-          "Dimmer"
+          "spot"
         ],
         "__type__": "LayerScopeTag"
       },
       "opacity": 1.0,
       "values": [
         {
-          "name": "All",
-          "parameter_selector": "*",
-          "value": 0.0,
+          "name": "Dimmer",
+          "parameter_selector": "dimmer*",
+          "value": 1.0,
           "__type__": "LayerValueScalar"
         }
       ]
     },
     {
-      "name": "RGBFixtures dimmer values",
+      "name": "RGB",
       "scope": {
         "tags": [
-          "RGB"
+          "rgb"
         ],
         "__type__": "LayerScopeTag"
       },
       "opacity": 1.0,
       "values": [
         {
-          "name": "Dimmers",
+          "name": "Dimmer",
           "parameter_selector": "dimmer*",
           "value": 1.0,
           "__type__": "LayerValueScalar"

@@ -9,14 +9,29 @@
     },
     "controls": [
       {
-        "label": "DimFix all params",
+        "label": "Spots Dimmer",
         "placement": {
           "column": 0,
           "row": 0,
           "spanColumn": 1,
           "spanRow": 1
         },
-        "address": "dimmer_fixtures_all_parameters",
+        "address": "spot_dimmer",
+        "value": 0.0,
+        "max": null,
+        "min": null,
+        "orientation": 1,
+        "__type__": "Fader"
+      },
+      {
+        "label": "RGB Dimmer",
+        "placement": {
+          "column": 1,
+          "row": 0,
+          "spanColumn": 1,
+          "spanRow": 1
+        },
+        "address": "rgb_dimmer",
         "value": 0.0,
         "max": null,
         "min": null,
@@ -26,7 +41,7 @@
       {
         "label": "Master Dimmer",
         "placement": {
-          "column": 1,
+          "column": 2,
           "row": 0,
           "spanColumn": 1,
           "spanRow": 1
@@ -41,14 +56,14 @@
       {
         "label": "Blackout",
         "placement": {
-          "column": 2,
+          "column": 3,
           "row": 0,
           "spanColumn": 1,
           "spanRow": 1
         },
         "address": "blackout",
         "value": false,
-        "is_toggle": false,
+        "is_toggle": true,
         "__type__": "Button"
       }
     ],

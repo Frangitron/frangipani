@@ -7,15 +7,15 @@ from frangipani.math.interpolator import Interpolator
 class Driver:
     def __init__(self, info: DriverInfo):
         self.info = info
-        self._source_value: float | bool | None = None
-        self._previous_value: float | None = None
+        self._source_value: float = 0.0
+        self._previous_value: float = 0.0
         self._interpolator = Interpolator(
             fade_in_time=self.info.fade_in_time,
             fade_out_time=self.info.fade_out_time
         )
 
     @property
-    def value(self) -> float | bool | None:
+    def value(self) -> float:
         interpolated = self._interpolator.value
         return 1.0 - interpolated if self.info.inverted else interpolated
 

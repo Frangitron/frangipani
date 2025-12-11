@@ -27,24 +27,32 @@ if __name__ == "__main__":
             placement=Placement(column=0, row=0),
             controls=[
                 Fader(
-                    address="dimmer_fixtures_all_parameters",
-                    label="DimFix all params",
+                    address="spot_dimmer",
+                    label="Spots Dimmer",
                     placement=Placement(column=0, row=0),
+                    orientation=ControlOrientationEnum.Vertical,
+                    value=0.0
+                ),
+                Fader(
+                    address="rgb_dimmer",
+                    label="RGB Dimmer",
+                    placement=Placement(column=1, row=0),
                     orientation=ControlOrientationEnum.Vertical,
                     value=0.0
                 ),
                 Fader(
                     address="master_dimmer",
                     label="Master Dimmer",
-                    placement=Placement(column=1, row=0),
+                    placement=Placement(column=2, row=0),
                     orientation=ControlOrientationEnum.Vertical,
                     value=0.0
                 ),
                 Button(
                     address="blackout",
+                    is_toggle=True,
                     label="Blackout",
-                    placement=Placement(column=2, row=0),
-                    value=False
+                    placement=Placement(column=3, row=0),
+                    value=False,
                 )
             ]
         )
@@ -54,7 +62,7 @@ if __name__ == "__main__":
     web_server_configuration_store.set_configuration(configuration)
     web_server_configuration_store.save("demo.webserver.json")
     web_server = WebServer(configuration=web_server_configuration_store.configuration)
-    web_server.start()
+    #web_server.start()
 
     while True:
         try:

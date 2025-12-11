@@ -18,17 +18,17 @@ if __name__ == "__main__":
         name="Demo Layer Stack",
         layers=[
             Layer(
-                name="DimmerFixtures all parameters",
-                scope=LayerScopeTag(tags=['Dimmer']),
+                name="Spots",
+                scope=LayerScopeTag(tags=['spot']),
                 values=[
-                    LayerValueScalar(name="All", parameter_selector="*", value=0.0),
+                    LayerValueScalar(name="Dimmer", parameter_selector="dimmer*", value=1.0),
                 ],
             ),
             Layer(
-                name="RGBFixtures dimmer values",
-                scope=LayerScopeTag(tags=['RGB']),
+                name="RGB",
+                scope=LayerScopeTag(tags=['rgb']),
                 values=[
-                    LayerValueScalar(name="Dimmers", parameter_selector="dimmer*", value=1.0),
+                    LayerValueScalar(name="Dimmer", parameter_selector="dimmer*", value=1.0),
                 ],
             ),
             Layer(

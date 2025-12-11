@@ -7,10 +7,11 @@
         "universe": 1
       },
       "definition_identifier": "Generic#Dimmer 1 Channel",
-      "name": "Dimmer 1",
+      "name": "Face front",
       "tags": [
-        "Dimmer",
-        "Odd"
+        "spot",
+        "face",
+        "front"
       ]
     },
     {
@@ -19,10 +20,11 @@
         "universe": 1
       },
       "definition_identifier": "Generic#Dimmer 1 Channel",
-      "name": "Dimmer 2",
+      "name": "Face back",
       "tags": [
-        "Dimmer",
-        "Even"
+        "spot",
+        "face",
+        "back"
       ]
     },
     {
@@ -30,11 +32,37 @@
         "channel": 3,
         "universe": 1
       },
-      "definition_identifier": "Generic#Color RGB",
-      "name": "RGB 1",
+      "definition_identifier": "Generic#Dimmer 1 Channel",
+      "name": "Lat\u00e9ral cour",
       "tags": [
-        "RGB",
-        "Odd"
+        "spot",
+        "lateral",
+        "left"
+      ]
+    },
+    {
+      "address": {
+        "channel": 4,
+        "universe": 1
+      },
+      "definition_identifier": "Generic#Dimmer 1 Channel",
+      "name": "Lat\u00e9ral jardin",
+      "tags": [
+        "spot",
+        "lateral",
+        "right"
+      ]
+    },
+    {
+      "address": {
+        "channel": 5,
+        "universe": 1
+      },
+      "definition_identifier": "Generic#Dimmer 1 Channel",
+      "name": "Contre",
+      "tags": [
+        "spot",
+        "back"
       ]
     },
     {
@@ -43,10 +71,11 @@
         "universe": 1
       },
       "definition_identifier": "Generic#Color RGB",
-      "name": "RGB 1",
+      "name": "Bowl",
       "tags": [
-        "RGB",
-        "Even"
+        "rgb",
+        "back",
+        "color"
       ]
     }
   ]
