@@ -18,20 +18,20 @@ if __name__ == "__main__":
         drivers=[
             Driver(
                 name="DimmerFixture (all parameters)",
-                source=DriverSourceIdentifier(
+                source_identifier=DriverSourceIdentifier(
                     control_address="dimmer_fixtures_all_parameters"
                 ),
-                target=DriverTargetIdentifier(
+                target_identifier=DriverTargetIdentifier(
                     layer_name="DimmerFixtures all parameters",
                     value_name="All",
                 ),
             ),
             Driver(
                 name="Blackout",
-                source=DriverSourceIdentifier(
+                source_identifier=DriverSourceIdentifier(
                     control_address="master_dimmer"
                 ),
-                target=DriverTargetIdentifier(
+                target_identifier=DriverTargetIdentifier(
                     layer_name="Blackout",
                     targets_opacity=True
                 ),
