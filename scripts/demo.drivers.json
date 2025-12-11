@@ -1,0 +1,37 @@
+{
+  "name": "Demo Driver Pool",
+  "drivers": [
+    {
+      "name": "DimmerFixture (all parameters)",
+      "target_identifier": {
+        "layer_name": "DimmerFixtures all parameters",
+        "value_name": "All",
+        "targets_opacity": null
+      },
+      "source_identifier": {
+        "control_address": "dimmer_fixtures_all_parameters"
+      },
+      "source_value": null,
+      "enabled": true,
+      "fade_in_time": 0.0,
+      "fade_out_time": 0.0,
+      "inverted": false
+    },
+    {
+      "name": "Blackout",
+      "target_identifier": {
+        "layer_name": "Blackout",
+        "value_name": null,
+        "targets_opacity": true
+      },
+      "source_identifier": {
+        "control_address": "master_dimmer"
+      },
+      "source_value": null,
+      "enabled": true,
+      "fade_in_time": 0.0,
+      "fade_out_time": 0.0,
+      "inverted": true
+    }
+  ]
+}

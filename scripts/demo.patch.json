@@ -1,0 +1,53 @@
+{
+  "name": "Demo Patch",
+  "items": [
+    {
+      "address": {
+        "channel": 1,
+        "universe": 1
+      },
+      "definition_identifier": "Generic#Dimmer 1 Channel",
+      "name": "Dimmer 1",
+      "tags": [
+        "Dimmer",
+        "Odd"
+      ]
+    },
+    {
+      "address": {
+        "channel": 2,
+        "universe": 1
+      },
+      "definition_identifier": "Generic#Dimmer 1 Channel",
+      "name": "Dimmer 2",
+      "tags": [
+        "Dimmer",
+        "Even"
+      ]
+    },
+    {
+      "address": {
+        "channel": 3,
+        "universe": 1
+      },
+      "definition_identifier": "Generic#Color RGB",
+      "name": "RGB 1",
+      "tags": [
+        "RGB",
+        "Odd"
+      ]
+    },
+    {
+      "address": {
+        "channel": 6,
+        "universe": 1
+      },
+      "definition_identifier": "Generic#Color RGB",
+      "name": "RGB 1",
+      "tags": [
+        "RGB",
+        "Even"
+      ]
+    }
+  ]
+}

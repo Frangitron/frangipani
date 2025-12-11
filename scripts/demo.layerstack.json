@@ -1,0 +1,56 @@
+{
+  "name": "Demo Layer Stack",
+  "layers": [
+    {
+      "name": "DimmerFixtures all parameters",
+      "scope": {
+        "tags": [
+          "Dimmer"
+        ],
+        "__type__": "LayerScopeTag"
+      },
+      "opacity": 1.0,
+      "values": [
+        {
+          "name": "All",
+          "parameter_selector": "*",
+          "value": 0.0,
+          "__type__": "LayerValueScalar"
+        }
+      ]
+    },
+    {
+      "name": "RGBFixtures dimmer values",
+      "scope": {
+        "tags": [
+          "RGB"
+        ],
+        "__type__": "LayerScopeTag"
+      },
+      "opacity": 1.0,
+      "values": [
+        {
+          "name": "Dimmers",
+          "parameter_selector": "dimmer*",
+          "value": 1.0,
+          "__type__": "LayerValueScalar"
+        }
+      ]
+    },
+    {
+      "name": "Blackout",
+      "scope": {
+        "__type__": "LayerScopeAll"
+      },
+      "opacity": 0.0,
+      "values": [
+        {
+          "name": "Dimmers",
+          "parameter_selector": "dimmer*",
+          "value": 0.0,
+          "__type__": "LayerValueScalar"
+        }
+      ]
+    }
+  ]
+}

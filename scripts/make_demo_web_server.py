@@ -40,6 +40,12 @@ if __name__ == "__main__":
                     orientation=ControlOrientationEnum.Vertical,
                     value=0.0
                 ),
+                Button(
+                    address="blackout",
+                    label="Blackout",
+                    placement=Placement(column=2, row=0),
+                    value=False
+                )
             ]
         )
     )
