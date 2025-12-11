@@ -1,3 +1,5 @@
+from typing import Any
+
 from dataclasses import dataclass, field
 
 from dataclasses_json import dataclass_json, config
@@ -32,3 +34,8 @@ class Layer:
             ]
         )
     )
+
+    def set_value(self, name: str, new_value: Any):
+        for value in self.values:
+            if value.name == name:
+                value.value = new_value
