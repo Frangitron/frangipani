@@ -8,6 +8,7 @@ from frangipani.engine.configuration import EngineConfiguration
 from frangipani.engine.driver_updater import DriverUpdater
 from frangipani.engine.solver import Solver
 from frangipani.patch.store import IPatchStore
+from frangipani.time_provider import ITimeProvider
 
 
 class Engine:
@@ -25,6 +26,7 @@ class Engine:
         self._driver_updater = DriverUpdater()
         self._patch_store = Injector().inject(IPatchStore)
         self._solver = Solver()
+        self._time_provider = Injector().inject(ITimeProvider)
 
     def clear(self):
         self._artnet_broadcaster.clear()
@@ -45,10 +47,14 @@ class Engine:
         if not self._initialized:
             raise RuntimeError("Engine not initialized")
 
+        self._time_provider.reset()
+
         self.is_running = True
         while self.is_running:
             if not self._has_interval_elapsed():
                 continue
+
+            self._time_provider.tick()
 
             self._driver_updater.read_sources()
 
