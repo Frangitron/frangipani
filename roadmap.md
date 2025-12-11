@@ -150,3 +150,4 @@ December 2025
 - [X] start/stop
 - [X] load/save configuration
 - [X] get all values
+- [ ] fix ungraceful shutdown
