@@ -46,8 +46,8 @@ if __name__ == "__main__":
                     targets_opacity=True
                 ),
                 inverted=True,
-                fade_in_time=1.0,
-                fade_out_time=1.0,
+                fade_in_time=0.5,
+                fade_out_time=0.5,
             ),
             DriverInfo(
                 name="Blackout",

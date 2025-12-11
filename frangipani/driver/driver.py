@@ -10,19 +10,18 @@ class Driver:
         self._source_value: float | bool | None = None
         self._previous_value: float | None = None
         self._interpolator = Interpolator(
-            fade_in_time=info.fade_in_time,
-            fade_out_time=info.fade_out_time
+            fade_in_time=self.info.fade_in_time,
+            fade_out_time=self.info.fade_out_time
         )
 
     @property
     def value(self) -> float | bool | None:
-        return self._interpolator.value
+        interpolated = self._interpolator.value
+        return 1.0 - interpolated if self.info.inverted else interpolated
 
     def set_source_value(self, value: float | bool | None) -> None:
         if value is not None:
-            value = min(max(0.0, float(value)), 1.0)
-
-        self._source_value = 1.0 - value if self.info.inverted else value
+            self._source_value = min(max(0.0, float(value)), 1.0)
 
         if self._previous_value != self._source_value:
             self._previous_value = self._source_value
