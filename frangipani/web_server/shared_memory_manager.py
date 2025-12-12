@@ -12,7 +12,7 @@ class SharedMemoryManager:
     def __init__(self, root_control_definition: BaseControl):
         self._root_control_definition = root_control_definition
         self._memory: SharedMemory | None = None
-        self._control_map: dict[str, tuple[int, str, float]] = {}
+        self._control_map: dict[str, tuple[int, str, tuple[float, ...]]] = {}
         self._buffer_size = 0
         self._build_map()
 
@@ -23,20 +23,21 @@ class SharedMemoryManager:
         def traverse(control: BaseControl):
             if isinstance(control, BaseInputControl):
                 fmt = ""
-                factor = 1.0  # FIXME scalars everywhere
+                factor = 1.0,
                 # bool is a subclass of int, so check bool first
                 if isinstance(control.value, bool):
                     fmt = "?"
-                    factor = 1.0
+                    factor = 1.0,
                 elif isinstance(control.value, (int, float)):
                     fmt = "d"
-                    factor = .01
+                    factor = .01,
                 elif (isinstance(control.value, (tuple, list))
                       and control.value
                       and all(isinstance(v, (int, float)) for v in control.value)):
                     # Pack/unpack arbitrary-length numeric tuples/lists (e.g. ColorWheel -> (x, y))
                     fmt = f"{len(control.value)}d"
-                    factor = 1.0
+                    # FIXME Hack to make colorwheel work
+                    factor =  0.00277, .01
 
                 if fmt:
                     self._control_map[control.address] = (self._buffer_size, fmt, factor)  # TODO make this a dataclass
@@ -49,7 +50,7 @@ class SharedMemoryManager:
         traverse(self._root_control_definition)
 
     @property
-    def control_map(self) -> dict[str, tuple[int, str, float]]:
+    def control_map(self) -> dict[str, tuple[int, str, tuple[float, ...]]]:
         return self._control_map
 
     def create_from_controls(self) -> str:
@@ -73,9 +74,9 @@ class SharedMemoryManager:
                 if isinstance(value, bool):
                     struct.pack_into(fmt, self._memory.buf, offset, value)
                 elif isinstance(value, (int, float)):
-                    struct.pack_into(fmt, self._memory.buf, offset, value * factor)
+                    struct.pack_into(fmt, self._memory.buf, offset, value * factor[0])
                 elif isinstance(value, (tuple, list)) and value and all(isinstance(v, (int, float)) for v in value):
-                    struct.pack_into(fmt, self._memory.buf, offset, *[v * factor for v in value])
+                    struct.pack_into(fmt, self._memory.buf, offset, *[c * f for c, f in zip(value, factor)])
 
             if isinstance(control, Group):
                 for child in control.controls:

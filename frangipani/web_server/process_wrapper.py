@@ -29,7 +29,10 @@ def _make_callback(shared_memory: SharedMemory, control_map: dict):
             if message.address in control_map:
                 offset, fmt, factor = control_map[message.address]
                 try:
-                    struct.pack_into(fmt, shared_memory.buf, offset, message.value * factor)
+                    if isinstance(message.value, (tuple, list)):
+                        struct.pack_into(fmt, shared_memory.buf, offset, *[c * f for c, f in zip(message.value, factor)])
+                    else:
+                        struct.pack_into(fmt, shared_memory.buf, offset, message.value * factor[0])
                 except Exception as e:
                     _logger.error(f"Failed to update shared memory for {message.address}: {e}")
 

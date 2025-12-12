@@ -5,7 +5,9 @@
       "parameter_definitions": [
         {
           "address": 0,
-          "default_value": 0.0,
+          "default_value": [
+            0.0
+          ],
           "name": "Dimmer",
           "resolution": "simple",
           "type": "dimmer"
@@ -18,7 +20,11 @@
       "parameter_definitions": [
         {
           "address": 0,
-          "default_value": 0.0,
+          "default_value": [
+            1.0,
+            1.0,
+            1.0
+          ],
           "name": "ColorRGB",
           "resolution": "simple",
           "type": "color_rgb"

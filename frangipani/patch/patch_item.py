@@ -13,20 +13,26 @@ class PatchItem:
     name: str
     tags: list[str]
     definition: FixtureDefinition | None = None
-    _parameter_values: dict[str, float] = field(default_factory=dict)
+    _parameter_values: dict[str, tuple[float, ...]] = field(default_factory=dict)
 
     def __post_init__(self):
         self.at_default()
 
-    def set_parameter(self, name: str, value: float, opacity: float) -> None:
-        self._parameter_values[name] = min(max(0.0, value * opacity + self._parameter_values[name] * (1 - opacity)), 1.0)
+    def set_parameter_value(self, name: str, value: tuple[float, ...], opacity: float) -> None:
+        channel_values = []
+        for channel_index, channel_value in enumerate(value):
+            channel_values.append(min(max(0.0, channel_value * opacity + self._parameter_values[name][channel_index] * (1 - opacity)), 1.0))
 
-    def get_parameter(self, name: str) -> float:
+        self._parameter_values[name] = tuple(channel_values)
+        print(">", self._parameter_values[name])
+
+    def get_parameter_value(self, name: str) -> tuple[float, ...]:
+        print("<", self._parameter_values[name])
         return self._parameter_values[name]
 
     def at_zero(self):
         for parameter in self.definition.parameter_definitions:
-            self._parameter_values[parameter.name] = 0.0
+            self._parameter_values[parameter.name] = tuple(0.0 for _ in range(len(parameter.type.channel_kinds)))
 
     def at_default(self):
         for parameter in self.definition.parameter_definitions:

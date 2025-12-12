@@ -57,7 +57,7 @@ class Solver:
                         layer_value=layer_value
                     )
                     for parameter_definition in parameter_definitions:
-                        patch_item.set_parameter(
+                        patch_item.set_parameter_value(
                             name=parameter_definition.name,
                             value=layer_value.value,
                             opacity=layer.opacity
@@ -65,9 +65,10 @@ class Solver:
 
         for patch_item in self._patch_store.items:
             for parameter_definition in patch_item.definition.parameter_definitions:
-                scalar = patch_item.get_parameter(parameter_definition.name)
+                parameter_value = patch_item.get_parameter_value(parameter_definition.name)
                 address = patch_item.address.channel + parameter_definition.address - 1
-                self._universe_buffers[patch_item.address.universe][address] = int(round(scalar * 255))
+                for offset, channel_value in enumerate(parameter_value):
+                    self._universe_buffers[patch_item.address.universe][address + offset] = int(round(channel_value * 255))
 
     def get_dmx_buffer(self, universe: int) -> bytearray:
         return self._universe_buffers[universe]

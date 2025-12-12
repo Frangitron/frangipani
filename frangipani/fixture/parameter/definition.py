@@ -10,7 +10,7 @@ from frangipani.fixture.parameter.type import ParameterType
 @dataclass
 class FixtureParameterDefinition:
     address: int
-    default_value: float
+    default_value: tuple[float, ...]
     name: str
     resolution: ParameterResolution
     type: ParameterType

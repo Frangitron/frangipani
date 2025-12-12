@@ -1,4 +1,5 @@
 from frangipani.driver.driver_info import DriverInfo
+from frangipani.fixture.parameter.channel import FixtureParameterChannelKind
 from frangipani.fixture.parameter.channel.channel import FixtureParameterChannel
 
 
@@ -25,6 +26,11 @@ class Driver:
         return self._interpolated_value
 
     def set_source_value(self, value: tuple[float, ...]) -> None:
+        # FIXME Hack to make Hue/Saturation conversion to RGB
+        kinds = {channel.kind for channel in self.channels}
+        if kinds == {FixtureParameterChannelKind.Red, FixtureParameterChannelKind.Green, FixtureParameterChannelKind.Blue}:
+            value = (value[0], value[1], 0.0)
+
         if len(value) != len(self.channels):
             raise ValueError(
                 f"Expected {len(self.channels)} value(s), got {len(value)} for driver {self.info.name}"

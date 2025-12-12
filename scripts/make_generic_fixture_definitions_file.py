@@ -24,7 +24,7 @@ if __name__ == "__main__":
                 parameter_definitions=[
                     FixtureParameterDefinition(
                         address=0,
-                        default_value=0.0,
+                        default_value=(0.0, ),
                         name="Dimmer",
                         resolution=ParameterResolution.Simple,
                         type=ParameterType.Dimmer
@@ -37,7 +37,7 @@ if __name__ == "__main__":
                 parameter_definitions=[
                     FixtureParameterDefinition(
                         address=0,
-                        default_value=0.0,
+                        default_value=(1.0, 1.0, 1.0),
                         name="ColorRGB",
                         resolution=ParameterResolution.Simple,
                         type=ParameterType.ColorRGB
