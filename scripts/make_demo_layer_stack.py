@@ -24,6 +24,7 @@ if __name__ == "__main__":
                 values=[
                     LayerValueScalar(name="Dimmer", parameter_selector="dimmer", value=1.0),
                 ],
+                opacity=1.0,
             ),
             Layer(
                 name="RGB",
@@ -31,6 +32,7 @@ if __name__ == "__main__":
                 values=[
                     LayerValueVector3(name="ColorRGB", parameter_selector="ColorRGB", value=(1.0, 1.0, 1.0)),
                 ],
+                opacity=1.0,
             ),
             Layer(
                 name="Master Dimmer",
