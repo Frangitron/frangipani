@@ -42,12 +42,12 @@ class Solver:
                     continue
 
                 if driver.info.target_identifier.targets_opacity:
-                    layer.opacity = driver.value
+                    layer.opacity = driver.value[0]
 
                 else:
-                    layer.set_value(
-                        name=driver.info.target_identifier.value_name,
-                        new_value=driver.value
+                    layer.set_value_from_channels(
+                        value_name=driver.info.target_identifier.value_name,
+                        channel_values=driver.value
                     )
 
             for layer_value in layer.values:

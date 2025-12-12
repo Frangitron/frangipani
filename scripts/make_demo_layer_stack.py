@@ -1,12 +1,13 @@
 import logging
 
 from frangipani.layer import (
+    JsonLayerStackStore,
     Layer,
     LayerScopeAll,
     LayerScopeTag,
     LayerStack,
     LayerValueScalar,
-    JsonLayerStackStore,
+    LayerValueVector3,
 )
 
 
@@ -28,7 +29,7 @@ if __name__ == "__main__":
                 name="RGB",
                 scope=LayerScopeTag(tags=['rgb']),
                 values=[
-                    LayerValueScalar(name="ColorRGB", parameter_selector="ColorRGB", value=1.0),
+                    LayerValueVector3(name="ColorRGB", parameter_selector="ColorRGB", value=(1.0, 1.0, 1.0)),
                 ],
             ),
             Layer(

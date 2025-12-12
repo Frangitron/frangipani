@@ -9,9 +9,6 @@ from frangipani.driver import (
     DriverTargetIdentifier,
     JsonDriverPoolStore,
 )
-from frangipani.fixture.parameter.channel.channel_kind import (
-    FixtureParameterChannelKind,
-)
 from frangipani.time_provider import (
     ITimeProvider,
     TimeProvider,
@@ -40,9 +37,9 @@ if __name__ == "__main__":
                 ),
             ),
             DriverInfo(
-                name="RGB Dimmer",
+                name="RGB Wheel",
                 source_identifier=DriverSourceIdentifier(
-                    control_address="rgb_dimmer"
+                    control_address="rgb_wheel"
                 ),
                 target_identifier=DriverTargetIdentifier(
                     layer_name="RGB",

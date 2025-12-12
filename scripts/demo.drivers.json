@@ -17,14 +17,14 @@
       "inverted": false
     },
     {
-      "name": "RGB Dimmer",
+      "name": "RGB Wheel",
       "target_identifier": {
         "layer_name": "RGB",
         "value_name": "ColorRGB",
         "targets_opacity": null
       },
       "source_identifier": {
-        "control_address": "rgb_dimmer"
+        "control_address": "rgb_wheel"
       },
       "enabled": true,
       "fade_in_time": 0.0,

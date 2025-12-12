@@ -5,6 +5,7 @@ from pythonhelpers.injector import Injector
 from frangipani.driver.driver import Driver
 from frangipani.driver.pool_store import IDriverPoolStore
 from frangipani.fixture.parameter.channel.channel import FixtureParameterChannel
+from frangipani.fixture.parameter.channel.channel_kind import FixtureParameterChannelKind
 from frangipani.fixture.parameter.definition import FixtureParameterDefinition
 from frangipani.layer.layer import Layer
 from frangipani.layer.scope.base import BaseLayerScope
@@ -64,19 +65,28 @@ class Resolver:
 
     # TODO split in several methods (list, validate, assign/create channels)
     def resolve_driver_channels(self, driver: Driver):
+        if driver.info.target_identifier.targets_opacity:
+            driver.channels = [FixtureParameterChannel(
+                kind=FixtureParameterChannelKind.LayerOpacity,
+                interpolator=Interpolator(
+                    fade_in_time=driver.info.fade_in_time,
+                    fade_out_time=driver.info.fade_out_time
+                ))]
+            return
+
         parameter_definitions = self.parameter_definitions_for_driver(driver)
         channel_kinds = list()
         for parameter_definition in parameter_definitions:
             channel_kinds.append(parameter_definition.type.channel_kinds)
 
-        channel_kinds = set(channel_kinds)
+        channel_kinds = list(set(channel_kinds))
         if len(channel_kinds) > 1:
             raise ValueError(
                 f"Inconsistent channel kinds for driver {driver.info.name}:"
                 f" {', '.join([k.name for k in channel_kinds])}"
             )
 
-        for channel_kind in channel_kinds:
+        for channel_kind in channel_kinds[0]:
             new_channel = FixtureParameterChannel(
                 kind=channel_kind,
                 interpolator=Interpolator(
@@ -84,7 +94,6 @@ class Resolver:
                     fade_out_time=driver.info.fade_out_time
                 )
             )
-            print(driver.info.name, new_channel)
             driver.channels.append(new_channel)
 
     def drivers_for_layer(self, layer: Layer) -> list[Driver]:

@@ -31,6 +31,12 @@ class SharedMemoryManager:
                 elif isinstance(control.value, (int, float)):
                     fmt = "d"
                     factor = .01
+                elif (isinstance(control.value, (tuple, list))
+                      and control.value
+                      and all(isinstance(v, (int, float)) for v in control.value)):
+                    # Pack/unpack arbitrary-length numeric tuples/lists (e.g. ColorWheel -> (x, y))
+                    fmt = f"{len(control.value)}d"
+                    factor = 1.0
 
                 if fmt:
                     self._control_map[control.address] = (self._buffer_size, fmt, factor)  # TODO make this a dataclass
@@ -62,7 +68,14 @@ class SharedMemoryManager:
         def traverse(control: BaseControl):
             if isinstance(control, BaseInputControl) and control.address in self._control_map:
                 offset, fmt, factor = self._control_map[control.address]
-                struct.pack_into(fmt, self._memory.buf, offset, control.value * factor)
+                value = control.value
+
+                if isinstance(value, bool):
+                    struct.pack_into(fmt, self._memory.buf, offset, value)
+                elif isinstance(value, (int, float)):
+                    struct.pack_into(fmt, self._memory.buf, offset, value * factor)
+                elif isinstance(value, (tuple, list)) and value and all(isinstance(v, (int, float)) for v in value):
+                    struct.pack_into(fmt, self._memory.buf, offset, *[v * factor for v in value])
 
             if isinstance(control, Group):
                 for child in control.controls:
@@ -80,18 +93,19 @@ class SharedMemoryManager:
         self._assert_not_created()
         self._memory = SharedMemory(name=name)
 
-    def get_value(self, control_address: str) -> float | bool:
+    def get_value(self, control_address: str) -> tuple[float, ...]:
         if control_address not in self._control_map:
             raise KeyError(f"Control {control_address} not found in shared memory map")
 
         offset, fmt, _ = self._control_map[control_address]
-        return struct.unpack_from(fmt, self._memory.buf, offset)[0]
+        value = struct.unpack_from(fmt, self._memory.buf, offset)
+        return value
 
-    def get_all_values(self) -> dict[str, float | bool]:
+    def get_all_values(self) -> dict[str, tuple[float, ...]]:
         result = {}
-        for control_id, (offset, fmt, _) in self._control_map.items():
-            val = struct.unpack_from(fmt, self._memory.buf, offset)[0]
-            result[control_id] = val
+        for control_address, (offset, fmt, _) in self._control_map.items():
+            value = struct.unpack_from(fmt, self._memory.buf, offset)
+            result[control_address] = value
         return result
 
     def cleanup(self):

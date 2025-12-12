@@ -32,8 +32,12 @@
         {
           "name": "ColorRGB",
           "parameter_selector": "ColorRGB",
-          "value": 1.0,
-          "__type__": "LayerValueScalar"
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "__type__": "LayerValueVector3"
         }
       ]
     },

@@ -31,12 +31,12 @@
           "spanColumn": 1,
           "spanRow": 1
         },
-        "address": "rgb_dimmer",
-        "value": 0.0,
-        "max": null,
-        "min": null,
-        "orientation": 1,
-        "__type__": "Fader"
+        "address": "rgb_wheel",
+        "value": [
+          0.0,
+          0.0
+        ],
+        "__type__": "ColorWheel"
       },
       {
         "label": "Master Dimmer",

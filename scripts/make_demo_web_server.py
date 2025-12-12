@@ -35,12 +35,11 @@ if __name__ == "__main__":
                     orientation=ControlOrientationEnum.Vertical,
                     value=0.0
                 ),
-                Fader(
-                    address="rgb_dimmer",
-                    label="RGB Dimmer",
+                ColorWheel(
+                    address="rgb_wheel",
+                    label="RGB Wheel",
                     placement=Placement(column=1, row=0),
-                    orientation=ControlOrientationEnum.Vertical,
-                    value=0.0
+                    value=(0.0, 0.0)
                 ),
                 Fader(
                     address="master_dimmer",

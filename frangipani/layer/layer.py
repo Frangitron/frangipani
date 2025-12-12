@@ -35,7 +35,7 @@ class Layer:
         )
     )
 
-    def set_value(self, name: str, new_value: Any):
+    def set_value_from_channels(self, value_name: str, channel_values: tuple[float, ...]):
         for value in self.values:
-            if value.name == name:
-                value.value = new_value
+            if value.name == value_name:
+                value.set_value_from_channels(channel_values)
