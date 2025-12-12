@@ -2,11 +2,51 @@
 
 ## Minimum viable product (12/2025)
 
-December 2025
+### Project structure
 
-- [X] Use interfaces and Injector
+- Driver
+- Fixture
+  - Definition
+  - Library
+  - Store
+  - Parameter
+    - Definition
+    - Channel
+- Layer
+  - Stack Store
+  - Value
+- Patch
+  - Address
+  - Item
+  - Store
+- TimeProvider
+- Engine
+  - Solver
+  - Resolver
+  - Artnet broadcaster
+- WebServer
+
+### General features / architecture
+
 - [X] Scalars everywhere
+- [X] Use interfaces and Injector
 - [ ] StorableMixin interface for JSON serialization
+- [ ] Schema version check for all stores
+- [ ] Tests
+
+### Driver
+
+- [X] name
+- [X] target identifier (layer opacity, values)
+- [X] source identifier (web control address)
+- [X] fade in/out
+  - [X] use increments and time divisions (similar to audio compressor)
+- [X] enabled
+- [X] load/save from a file
+- [X] script to create a demo driver pool
+- [ ] _(write tests)_
+- [ ] _(user interface)_
+- [ ] _(target change notifies all connected drivers)_
 
 ### Fixture 
 
@@ -19,7 +59,13 @@ December 2025
 - [ ] _(? forbid char #)_
 - [ ] _(mode)_
 
-#### Definition store
+#### Library
+
+- [X] name
+- [X] api version
+- [X] fixtures
+  
+#### Store
 
 - [X] load (generic)
 - [X] fixture definition library
@@ -29,38 +75,21 @@ December 2025
 - [X] script to create generic fixture definition library
 - [ ] _(write tests)_
 
-#### Parameter definition
+#### Parameter
+
+##### Definition
 
 - [X] address
 - [X] default value
 - [X] name
 - [X] resolution
 - [X] type (dimmer, color)
+  - [X] channel kinds
 
-### Patch
+##### Channel
 
-- [X] name
-- [X] items
-
-#### Address
-
-- [X] channel
-- [X] universe
-
-#### Item
-
-- [X] address
-- [X] definition
-- [X] name
-- [X] tags
-- [ ] _(position)_
-
-#### Store
-
-- [X] load from a file
-- [X] save to a file
-- [X] script to create demo patch
-- [ ] _(write tests)_
+- [X] kind
+- [X] interpolator
 
 ### Layer
 
@@ -91,27 +120,37 @@ December 2025
   - [ ] _(angle \[-360..360\])_
   - [ ] _(speed)_
 
-### Driver
+### Patch
 
 - [X] name
-- [X] target (layer opacity, values)
-- [X] source identifier
-- [ ] fade in/out
-  - [ ] use increments and time divisions (similar to audio compressor)
-- [X] enabled
-- [ ] _(user interface)_
-- [ ] _(target change notifies all connected drivers)_
+- [X] items
 
-#### Driver Pool Store
+#### Address
+
+- [X] channel
+- [X] universe
+
+#### Item
+
+- [X] address
+- [X] definition
+- [X] name
+- [X] tags
+- [ ] _(position)_
+
+#### Store
 
 - [X] load from a file
 - [X] save to a file
-- [X] script to create a demo stack
+- [X] script to create demo patch
 - [ ] _(write tests)_
 
-#### Driver Updater
+### TimeProvider
 
-- [X] update inputs
+- [X] reset
+- [X] tick
+- [X] time_delta
+- [X] current_time
 
 ### Engine
 
@@ -129,13 +168,13 @@ December 2025
 
 #### Solver
 
-- [ ] basic synchronous solving 
+- [X] basic synchronous solving 
   - [X] read driver sources
   - [X] update layer values
     - [X] fade in/out
-  - [ ] _(notify drivers targeting same values)_
   - [X] update layer values
   - [X] convert to DMX
+  - [ ] _(notify drivers targeting same values)_
 
 #### Resolver
 
@@ -153,7 +192,3 @@ December 2025
 - [X] load/save configuration
 - [X] get all values
 - [X] fix ungraceful shutdown
-
-### TimeProvider
-
-- [X] now as float
