@@ -1,4 +1,5 @@
 from frangipani.driver.driver_info import DriverInfo
+from frangipani.fixture.parameter.channel.channel import FixtureParameterChannel
 from frangipani.math.interpolator import Interpolator
 
 
@@ -13,6 +14,7 @@ class Driver:
             fade_in_time=self.info.fade_in_time,
             fade_out_time=self.info.fade_out_time
         )
+        self.channels: list[FixtureParameterChannel] = []
 
     @property
     def value(self) -> float:

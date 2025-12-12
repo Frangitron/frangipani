@@ -14,7 +14,9 @@ class DriverPool:
                 raise ValueError(f"Duplicate driver name {driver_info.name}")
 
             names.add(driver_info.name)
-            self.drivers.append(Driver(driver_info))
+
+            new_driver = Driver(driver_info)
+            self.drivers.append(new_driver)
 
     @staticmethod
     def from_storable(storable: DriverPoolStorable) -> "DriverPool":

@@ -8,7 +8,7 @@ class ParameterType(StrEnum):
     ColorRGB = "color_rgb"
 
     @property
-    def channel_kind(self) -> tuple[FixtureParameterChannelKind]:
+    def channel_kinds(self) -> tuple[FixtureParameterChannelKind]:
         return {
             ParameterType.Dimmer: (
                 FixtureParameterChannelKind.Dimmer,

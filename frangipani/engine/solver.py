@@ -1,14 +1,8 @@
-import fnmatch
-
 from pythonhelpers.injector import Injector
 
 from frangipani.engine.resolver import Resolver
 from frangipani.layer.stack_store import ILayerStackStore
 from frangipani.patch import IPatchStore
-
-
-def _match(selector: str, name: str) -> bool:
-    return fnmatch.fnmatch(name.lower(), selector.lower())
 
 
 class Solver:
@@ -28,6 +22,9 @@ class Solver:
         for patch_item in self._patch_store.items:
             if patch_item.address.universe not in self._universe_buffers:
                 self._universe_buffers[patch_item.address.universe] = bytearray(512)
+
+        self._resolver.resolve_all_driver_channels()
+        print(f"All Driver channels resolved")
 
         print(f"DMX universes : {len(self._universe_buffers)}")
         print("Solver initialized")
@@ -53,15 +50,18 @@ class Solver:
                         new_value=driver.value
                     )
 
-            for value in layer.values:
+            for layer_value in layer.values:
                 for patch_item in patch_items:
-                    for parameter_definition in patch_item.definition.parameter_definitions:
-                        if _match(value.parameter_selector, parameter_definition.name):
-                            patch_item.set_parameter(
-                                name=parameter_definition.name,
-                                value=value.value,
-                                opacity=layer.opacity
-                            )
+                    parameter_definitions = self._resolver.fixture_parameter_definitions_for_layer_value(
+                        patch_item=patch_item,
+                        layer_value=layer_value
+                    )
+                    for parameter_definition in parameter_definitions:
+                        patch_item.set_parameter(
+                            name=parameter_definition.name,
+                            value=layer_value.value,
+                            opacity=layer.opacity
+                        )
 
         for patch_item in self._patch_store.items:
             for parameter_definition in patch_item.definition.parameter_definitions:
