@@ -17,6 +17,8 @@ from frangipani.web_server import (
 
 
 if __name__ == "__main__":
+    do_run = False
+
     logging.basicConfig(level=logging.INFO)
     _logger = logging.getLogger("Script:MakeDemoWebServer")
 
@@ -62,16 +64,18 @@ if __name__ == "__main__":
     web_server_configuration_store.set_configuration(configuration)
     web_server_configuration_store.save("demo.webserver.json")
     web_server = WebServer(configuration=web_server_configuration_store.configuration)
-    #web_server.start()
 
-    while True:
-        try:
-            values = web_server.get_all_values()
-            if values:
-                print(values)
+    if do_run:
+        web_server.start()
 
-            time.sleep(1.0 / 10.0)
-        except KeyboardInterrupt:
-            break
+        while True:
+            try:
+                values = web_server.get_all_values()
+                if values:
+                    print(values)
 
-    web_server.stop()
+                time.sleep(1.0 / 10.0)
+            except KeyboardInterrupt:
+                break
+
+        web_server.stop()

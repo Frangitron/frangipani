@@ -2,7 +2,7 @@ import logging
 
 from pythonhelpers.injector import Injector
 
-from frangipani.fixture_definition import (
+from frangipani.fixture.definition import (
     IFixtureDefinitionStore,
     JsonFixtureDefinitionStore,
 )

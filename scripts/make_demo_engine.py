@@ -11,7 +11,7 @@ from frangipani.engine import (
     Engine,
     EngineConfiguration,
 )
-from frangipani.fixture_definition import (
+from frangipani.fixture.definition import (
     IFixtureDefinitionStore,
     JsonFixtureDefinitionStore,
 )

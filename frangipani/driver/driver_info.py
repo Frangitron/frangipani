@@ -4,6 +4,7 @@ from dataclasses_json import dataclass_json
 
 from frangipani.driver.source_identifier import DriverSourceIdentifier
 from frangipani.driver.target_identifier import DriverTargetIdentifier
+from frangipani.fixture.parameter.channel import FixtureParameterChannelKind
 
 
 @dataclass_json

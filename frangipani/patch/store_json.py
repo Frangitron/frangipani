@@ -1,9 +1,5 @@
 import logging
 
-from pythonhelpers.injector import Injector
-
-from frangipani.fixture_definition.store import IFixtureDefinitionStore
-from frangipani.patch.patch import Patch
 from frangipani.patch.patch_address import PatchAddress
 from frangipani.patch.patch_item import PatchItem
 from frangipani.patch.patch_item_converter import PatchItemConverter

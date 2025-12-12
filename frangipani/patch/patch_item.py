@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 
 from dataclasses_json import dataclass_json
 
-from frangipani.fixture_definition.fixture_definition import FixtureDefinition
+from frangipani.fixture.definition.definition import FixtureDefinition
 from frangipani.patch.patch_address import PatchAddress
 
 

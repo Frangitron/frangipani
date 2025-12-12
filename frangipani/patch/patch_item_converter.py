@@ -1,6 +1,6 @@
 from pythonhelpers.injector import Injector
 
-from frangipani.fixture_definition import IFixtureDefinitionStore
+from frangipani.fixture.definition import IFixtureDefinitionStore
 from frangipani.patch.patch_item import PatchItem
 from frangipani.patch.patch_item_storable import PatchItemStorable
 

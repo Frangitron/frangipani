@@ -9,6 +9,9 @@ from frangipani.driver import (
     DriverTargetIdentifier,
     JsonDriverPoolStore,
 )
+from frangipani.fixture.parameter.channel.channel_kind import (
+    FixtureParameterChannelKind,
+)
 from frangipani.time_provider import (
     ITimeProvider,
     TimeProvider,

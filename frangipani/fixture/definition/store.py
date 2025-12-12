@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from frangipani.fixture_definition.fixture_definition import FixtureDefinition
-from frangipani.fixture_definition.fixture_definition_library import FixtureDefinitionLibrary
+from frangipani.fixture.definition.definition import FixtureDefinition
+from frangipani.fixture.definition.library import FixtureDefinitionLibrary
 
 
 class IFixtureDefinitionStore(ABC):

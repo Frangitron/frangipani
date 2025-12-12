@@ -3,7 +3,7 @@ from typing import ClassVar
 
 from dataclasses_json import dataclass_json
 
-from frangipani.fixture_definition.fixture_definition import FixtureDefinition
+from frangipani.fixture.definition.definition import FixtureDefinition
 
 
 @dataclass_json

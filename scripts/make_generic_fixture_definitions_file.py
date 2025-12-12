@@ -1,12 +1,14 @@
 import logging
 
-from frangipani.fixture_definition import (
+from frangipani.fixture.definition import (
     FixtureDefinition,
     FixtureDefinitionLibrary,
     JsonFixtureDefinitionStore,
-    ParameterDefinition,
-    ParameterResolutionEnum,
-    ParameterTypeEnum,
+)
+from frangipani.fixture.parameter import (
+    FixtureParameterDefinition,
+    ParameterResolution,
+    ParameterType,
 )
 
 
@@ -20,12 +22,12 @@ if __name__ == "__main__":
         definitions=[
             FixtureDefinition(
                 parameter_definitions=[
-                    ParameterDefinition(
+                    FixtureParameterDefinition(
                         address=0,
                         default_value=0.0,
                         name="Dimmer",
-                        resolution=ParameterResolutionEnum.Simple,
-                        type=ParameterTypeEnum.Dimmer
+                        resolution=ParameterResolution.Simple,
+                        type=ParameterType.Dimmer
                     )
                 ],
                 manufacturer="Generic",
@@ -33,12 +35,12 @@ if __name__ == "__main__":
             ),
             FixtureDefinition(
                 parameter_definitions=[
-                    ParameterDefinition(
+                    FixtureParameterDefinition(
                         address=0,
                         default_value=0.0,
                         name="Dimmer",
-                        resolution=ParameterResolutionEnum.Simple,
-                        type=ParameterTypeEnum.ColorRGB
+                        resolution=ParameterResolution.Simple,
+                        type=ParameterType.ColorRGB
                     )
                 ],
                 manufacturer="Generic",

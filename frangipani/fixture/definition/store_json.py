@@ -2,9 +2,9 @@ import json
 import logging
 from importlib import resources
 
-from frangipani.fixture_definition.fixture_definition import FixtureDefinition
-from frangipani.fixture_definition.fixture_definition_library import FixtureDefinitionLibrary
-from frangipani.fixture_definition.store import IFixtureDefinitionStore
+from frangipani.fixture.definition.definition import FixtureDefinition
+from frangipani.fixture.definition.library import FixtureDefinitionLibrary
+from frangipani.fixture.definition.store import IFixtureDefinitionStore
 
 _logger = logging.getLogger("FixtureDefinitionStore")
 
