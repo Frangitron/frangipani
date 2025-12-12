@@ -20,7 +20,7 @@
       "name": "RGB Dimmer",
       "target_identifier": {
         "layer_name": "RGB",
-        "value_name": "Dimmer",
+        "value_name": "ColorRGB",
         "targets_opacity": null
       },
       "source_identifier": {

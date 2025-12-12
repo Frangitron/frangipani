@@ -21,21 +21,21 @@ if __name__ == "__main__":
                 name="Spots",
                 scope=LayerScopeTag(tags=['spot']),
                 values=[
-                    LayerValueScalar(name="Dimmer", parameter_selector="dimmer*", value=1.0),
+                    LayerValueScalar(name="Dimmer", parameter_selector="dimmer", value=1.0),
                 ],
             ),
             Layer(
                 name="RGB",
                 scope=LayerScopeTag(tags=['rgb']),
                 values=[
-                    LayerValueScalar(name="Dimmer", parameter_selector="dimmer*", value=1.0),
+                    LayerValueScalar(name="ColorRGB", parameter_selector="ColorRGB", value=1.0),
                 ],
             ),
             Layer(
                 name="Master Dimmer",
                 scope=LayerScopeAll(),
                 values=[
-                    LayerValueScalar(name="Dimmers", parameter_selector="dimmer*", value=0.0),
+                    LayerValueScalar(name="Dimmer", parameter_selector="*", value=0.0),
                 ],
                 opacity=0.0,
             ),
@@ -43,7 +43,7 @@ if __name__ == "__main__":
                 name="Blackout",
                 scope=LayerScopeAll(),
                 values=[
-                    LayerValueScalar(name="Dimmers", parameter_selector="dimmer*", value=0.0),
+                    LayerValueScalar(name="Dimmer", parameter_selector="*", value=0.0),
                 ],
                 opacity=0.0,
             ),

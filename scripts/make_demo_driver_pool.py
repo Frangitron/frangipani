@@ -46,7 +46,7 @@ if __name__ == "__main__":
                 ),
                 target_identifier=DriverTargetIdentifier(
                     layer_name="RGB",
-                    value_name="Dimmer",
+                    value_name="ColorRGB",
                 ),
             ),
             DriverInfo(

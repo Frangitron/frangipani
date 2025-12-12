@@ -19,7 +19,7 @@
         {
           "address": 0,
           "default_value": 0.0,
-          "name": "Dimmer",
+          "name": "ColorRGB",
           "resolution": "simple",
           "type": "color_rgb"
         }
