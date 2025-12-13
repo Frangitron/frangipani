@@ -2,7 +2,7 @@
   "name": "Demo Driver Pool",
   "driver_infos": [
     {
-      "name": "Intermission Spots",
+      "name": "Intermission Spots On",
       "target_identifier": {
         "layer_name": "Intermission Spots",
         "value_name": null,
@@ -17,7 +17,7 @@
       "inverted": false
     },
     {
-      "name": "Intermission Bowls",
+      "name": "Intermission Bowls Color",
       "target_identifier": {
         "layer_name": "Intermission Bowls",
         "value_name": "ColorRGB",
@@ -27,12 +27,27 @@
         "control_address": "intermission_color"
       },
       "enabled": true,
+      "fade_in_time": 0.5,
+      "fade_out_time": 0.5,
+      "inverted": false
+    },
+    {
+      "name": "Intermission Bowls On",
+      "target_identifier": {
+        "layer_name": "Intermission Bowls",
+        "value_name": null,
+        "targets_opacity": true
+      },
+      "source_identifier": {
+        "control_address": "intermission_on"
+      },
+      "enabled": true,
       "fade_in_time": 1.0,
       "fade_out_time": 1.0,
       "inverted": false
     },
     {
-      "name": "Presentation Spots",
+      "name": "Presentation Spots On",
       "target_identifier": {
         "layer_name": "Presentation Spots",
         "value_name": null,
@@ -47,7 +62,7 @@
       "inverted": false
     },
     {
-      "name": "Presentation Bowls",
+      "name": "Presentation Bowls Color",
       "target_identifier": {
         "layer_name": "Presentation Bowls",
         "value_name": "ColorRGB",
@@ -57,12 +72,27 @@
         "control_address": "presentation_color"
       },
       "enabled": true,
+      "fade_in_time": 0.5,
+      "fade_out_time": 0.5,
+      "inverted": false
+    },
+    {
+      "name": "Presentation Bowls On",
+      "target_identifier": {
+        "layer_name": "Presentation Bowls",
+        "value_name": null,
+        "targets_opacity": true
+      },
+      "source_identifier": {
+        "control_address": "presentation_on"
+      },
+      "enabled": true,
       "fade_in_time": 1.0,
       "fade_out_time": 1.0,
       "inverted": false
     },
     {
-      "name": "Performance Spots",
+      "name": "Performance Spots On",
       "target_identifier": {
         "layer_name": "Performance Spots",
         "value_name": null,
@@ -77,7 +107,7 @@
       "inverted": false
     },
     {
-      "name": "Performance Bowls",
+      "name": "Performance Bowls Color",
       "target_identifier": {
         "layer_name": "Performance Bowls",
         "value_name": "ColorRGB",
@@ -85,6 +115,21 @@
       },
       "source_identifier": {
         "control_address": "performance_color"
+      },
+      "enabled": true,
+      "fade_in_time": 0.5,
+      "fade_out_time": 0.5,
+      "inverted": false
+    },
+    {
+      "name": "Performance Bowls On",
+      "target_identifier": {
+        "layer_name": "Performance Bowls",
+        "value_name": null,
+        "targets_opacity": true
+      },
+      "source_identifier": {
+        "control_address": "performance_on"
       },
       "enabled": true,
       "fade_in_time": 1.0,

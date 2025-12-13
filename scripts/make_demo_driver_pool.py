@@ -27,7 +27,7 @@ if __name__ == "__main__":
     for layer_name in ["Intermission", "Presentation", "Performance"]:
         driver_infos.extend([
             DriverInfo(
-                name=layer_name + " Spots",
+                name=layer_name + " Spots On",
                 source_identifier=DriverSourceIdentifier(
                     control_address=f"{layer_name.lower()}_on"
                 ),
@@ -39,7 +39,7 @@ if __name__ == "__main__":
                 fade_out_time = 1.0
             ),
             DriverInfo(
-                name=layer_name + " Bowls",
+                name=layer_name + " Bowls Color",
                 source_identifier=DriverSourceIdentifier(
                     control_address=f"{layer_name.lower()}_color"
                 ),
@@ -47,9 +47,21 @@ if __name__ == "__main__":
                     layer_name=layer_name + " Bowls",
                     value_name="ColorRGB"
                 ),
+                fade_in_time=0.5,
+                fade_out_time=0.5
+            ),
+            DriverInfo(
+                name=layer_name + " Bowls On",
+                source_identifier=DriverSourceIdentifier(
+                    control_address=f"{layer_name.lower()}_on"
+                ),
+                target_identifier=DriverTargetIdentifier(
+                    layer_name=layer_name + " Bowls",
+                    targets_opacity=True
+                ),
                 fade_in_time=1.0,
                 fade_out_time=1.0
-            )
+            ),
         ])
 
     driver_infos.extend([

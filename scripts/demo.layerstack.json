@@ -47,7 +47,8 @@
       "name": "Presentation Spots",
       "scope": {
         "tags": [
-          "spot"
+          "spot",
+          "face"
         ],
         "__type__": "LayerScopeTag"
       },
@@ -89,7 +90,8 @@
       "name": "Performance Spots",
       "scope": {
         "tags": [
-          "spot"
+          "spot",
+          "back"
         ],
         "__type__": "LayerScopeTag"
       },

@@ -15,14 +15,19 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     _logger = logging.getLogger("Script:MakeDemoLayerStack")
 
+    layer_tag = [
+        ("Intermission", ['spot'], 1.0),
+        ("Presentation", ['spot', 'face'], 1.0),
+        ("Performance", ['spot', 'back'], 1.0)
+    ]
     layers = []
-    for layer_name in ["Intermission", "Presentation", "Performance"]:
+    for layer_name, tags, value in layer_tag:
         layers.extend([
             Layer(
                 name=layer_name + " Spots",
-                scope=LayerScopeTag(tags=['spot']),
+                scope=LayerScopeTag(tags=tags),
                 values=[
-                    LayerValueScalar(name="Dimmer", parameter_selector="dimmer", value=1.0),
+                    LayerValueScalar(name="Dimmer", parameter_selector="dimmer", value=(value,)),
                 ],
                 opacity=1.0,
             ),
@@ -40,7 +45,7 @@ if __name__ == "__main__":
             name="Master Dimmer",
             scope=LayerScopeAll(),
             values=[
-                LayerValueScalar(name="Dimmer", parameter_selector="*", value=0.0),
+                LayerValueScalar(name="Dimmer", parameter_selector="*", value=(0.0,)),
             ],
             opacity=0.0,
         ),
@@ -48,7 +53,7 @@ if __name__ == "__main__":
             name="Blackout",
             scope=LayerScopeAll(),
             values=[
-                LayerValueScalar(name="Dimmer", parameter_selector="*", value=0.0),
+                LayerValueScalar(name="Dimmer", parameter_selector="*", value=(0.0,)),
             ],
             opacity=0.0,
         )
