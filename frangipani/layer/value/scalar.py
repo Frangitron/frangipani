@@ -9,10 +9,6 @@ from frangipani.layer.value.base import BaseLayerValue
 @dataclass
 class LayerValueScalar(BaseLayerValue[tuple[float]]):
 
-    def __post_init__(self):
-        # FIXME meh
-        self.value = (self.value,)
-
     def set_value_from_channels(self, channel_values: tuple[float, ...]) -> None:
         if len(channel_values) != 1:
             raise ValueError(f"Expected 1 value, got {len(channel_values)}")
