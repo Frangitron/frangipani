@@ -23,55 +23,66 @@ if __name__ == "__main__":
         ITimeProvider: TimeProvider(),
     })
 
-    pool = DriverPool(
-        name="Demo Driver Pool",
-        driver_infos=[
+    driver_infos = []
+    for layer_name in ["Intermission", "Presentation", "Performance"]:
+        driver_infos.extend([
             DriverInfo(
-                name="Spots Dimmer",
+                name=layer_name + " Spots",
                 source_identifier=DriverSourceIdentifier(
-                    control_address="spot_dimmer"
+                    control_address=f"{layer_name.lower()}_on"
                 ),
                 target_identifier=DriverTargetIdentifier(
-                    layer_name="Spots",
-                    value_name="Dimmer",
-                ),
-            ),
-            DriverInfo(
-                name="RGB Wheel",
-                source_identifier=DriverSourceIdentifier(
-                    control_address="rgb_wheel"
-                ),
-                target_identifier=DriverTargetIdentifier(
-                    layer_name="RGB",
-                    value_name="ColorRGB",
-                ),
-            ),
-            DriverInfo(
-                name="Master Dimmer",
-                source_identifier=DriverSourceIdentifier(
-                    control_address="master_dimmer"
-                ),
-                target_identifier=DriverTargetIdentifier(
-                    layer_name="Master Dimmer",
+                    layer_name=layer_name + " Spots",
                     targets_opacity=True
                 ),
-                inverted=True,
-                fade_in_time=0.5,
-                fade_out_time=0.5,
+                fade_in_time = 1.0,
+                fade_out_time = 1.0
             ),
             DriverInfo(
-                name="Blackout",
+                name=layer_name + " Bowls",
                 source_identifier=DriverSourceIdentifier(
-                    control_address="blackout"
+                    control_address=f"{layer_name.lower()}_color"
                 ),
                 target_identifier=DriverTargetIdentifier(
-                    layer_name="Blackout",
-                    targets_opacity=True,
+                    layer_name=layer_name + " Bowls",
+                    value_name="ColorRGB"
                 ),
                 fade_in_time=1.0,
-                fade_out_time=1.0,
+                fade_out_time=1.0
             )
-        ]
+        ])
+
+    driver_infos.extend([
+        DriverInfo(
+            name="Master Dimmer",
+            source_identifier=DriverSourceIdentifier(
+                control_address="master_dimmer"
+            ),
+            target_identifier=DriverTargetIdentifier(
+                layer_name="Master Dimmer",
+                targets_opacity=True
+            ),
+            inverted=True,
+            fade_in_time=0.5,
+            fade_out_time=0.5,
+        ),
+        DriverInfo(
+            name="Blackout",
+            source_identifier=DriverSourceIdentifier(
+                control_address="blackout"
+            ),
+            target_identifier=DriverTargetIdentifier(
+                layer_name="Blackout",
+                targets_opacity=True,
+            ),
+            fade_in_time=1.0,
+            fade_out_time=1.0,
+        )
+    ])
+
+    pool = DriverPool(
+        name="Demo Driver Pool",
+        driver_infos=driver_infos
     )
 
     store = JsonDriverPoolStore()

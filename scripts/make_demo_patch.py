@@ -67,7 +67,7 @@ if __name__ == "__main__":
             PatchItem(
                 address=PatchAddress(universe=1, channel=6),
                 name="Bowl",
-                tags=["rgb", "back", "color"],
+                tags=["bowl", "back", "color"],
                 definition=rgb_color_definition
             ),
         ],

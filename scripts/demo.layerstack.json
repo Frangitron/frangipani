@@ -2,7 +2,7 @@
   "name": "Demo Layer Stack",
   "layers": [
     {
-      "name": "Spots",
+      "name": "Intermission Spots",
       "scope": {
         "tags": [
           "spot"
@@ -14,16 +14,102 @@
         {
           "name": "Dimmer",
           "parameter_selector": "dimmer",
-          "value": 1.0,
+          "value": [
+            1.0
+          ],
           "__type__": "LayerValueScalar"
         }
       ]
     },
     {
-      "name": "RGB",
+      "name": "Intermission Bowls",
       "scope": {
         "tags": [
-          "rgb"
+          "bowl"
+        ],
+        "__type__": "LayerScopeTag"
+      },
+      "opacity": 1.0,
+      "values": [
+        {
+          "name": "ColorRGB",
+          "parameter_selector": "ColorRGB",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "__type__": "LayerValueVector3"
+        }
+      ]
+    },
+    {
+      "name": "Presentation Spots",
+      "scope": {
+        "tags": [
+          "spot"
+        ],
+        "__type__": "LayerScopeTag"
+      },
+      "opacity": 1.0,
+      "values": [
+        {
+          "name": "Dimmer",
+          "parameter_selector": "dimmer",
+          "value": [
+            1.0
+          ],
+          "__type__": "LayerValueScalar"
+        }
+      ]
+    },
+    {
+      "name": "Presentation Bowls",
+      "scope": {
+        "tags": [
+          "bowl"
+        ],
+        "__type__": "LayerScopeTag"
+      },
+      "opacity": 1.0,
+      "values": [
+        {
+          "name": "ColorRGB",
+          "parameter_selector": "ColorRGB",
+          "value": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "__type__": "LayerValueVector3"
+        }
+      ]
+    },
+    {
+      "name": "Performance Spots",
+      "scope": {
+        "tags": [
+          "spot"
+        ],
+        "__type__": "LayerScopeTag"
+      },
+      "opacity": 1.0,
+      "values": [
+        {
+          "name": "Dimmer",
+          "parameter_selector": "dimmer",
+          "value": [
+            1.0
+          ],
+          "__type__": "LayerValueScalar"
+        }
+      ]
+    },
+    {
+      "name": "Performance Bowls",
+      "scope": {
+        "tags": [
+          "bowl"
         ],
         "__type__": "LayerScopeTag"
       },
@@ -51,7 +137,9 @@
         {
           "name": "Dimmer",
           "parameter_selector": "*",
-          "value": 0.0,
+          "value": [
+            0.0
+          ],
           "__type__": "LayerValueScalar"
         }
       ]
@@ -66,7 +154,9 @@
         {
           "name": "Dimmer",
           "parameter_selector": "*",
-          "value": 0.0,
+          "value": [
+            0.0
+          ],
           "__type__": "LayerValueScalar"
         }
       ]

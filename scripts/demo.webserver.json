@@ -9,49 +9,43 @@
     },
     "controls": [
       {
-        "label": "Spots Dimmer",
+        "label": "Intermission",
         "placement": {
           "column": 0,
           "row": 0,
           "spanColumn": 1,
           "spanRow": 1
         },
-        "address": "spot_dimmer",
-        "value": 0.0,
-        "max": null,
-        "min": null,
-        "orientation": 1,
-        "__type__": "Fader"
+        "address": "intermission_on",
+        "value": false,
+        "is_toggle": true,
+        "__type__": "Button"
       },
       {
-        "label": "RGB Dimmer",
+        "label": "Presentation",
         "placement": {
           "column": 1,
           "row": 0,
           "spanColumn": 1,
           "spanRow": 1
         },
-        "address": "rgb_wheel",
-        "value": [
-          0.0,
-          0.0
-        ],
-        "__type__": "ColorWheel"
+        "address": "presentation_on",
+        "value": false,
+        "is_toggle": true,
+        "__type__": "Button"
       },
       {
-        "label": "Master Dimmer",
+        "label": "Performance",
         "placement": {
           "column": 2,
           "row": 0,
           "spanColumn": 1,
           "spanRow": 1
         },
-        "address": "master_dimmer",
-        "value": 0.0,
-        "max": null,
-        "min": null,
-        "orientation": 1,
-        "__type__": "Fader"
+        "address": "performance_on",
+        "value": false,
+        "is_toggle": true,
+        "__type__": "Button"
       },
       {
         "label": "Blackout",
@@ -65,6 +59,66 @@
         "value": false,
         "is_toggle": true,
         "__type__": "Button"
+      },
+      {
+        "label": "Intermission",
+        "placement": {
+          "column": 0,
+          "row": 1,
+          "spanColumn": 1,
+          "spanRow": 1
+        },
+        "address": "intermission_color",
+        "value": [
+          0.0,
+          0.0
+        ],
+        "__type__": "ColorWheel"
+      },
+      {
+        "label": "Presentation",
+        "placement": {
+          "column": 1,
+          "row": 1,
+          "spanColumn": 1,
+          "spanRow": 1
+        },
+        "address": "presentation_color",
+        "value": [
+          0.0,
+          0.0
+        ],
+        "__type__": "ColorWheel"
+      },
+      {
+        "label": "Performance",
+        "placement": {
+          "column": 2,
+          "row": 1,
+          "spanColumn": 1,
+          "spanRow": 1
+        },
+        "address": "performance_color",
+        "value": [
+          0.0,
+          0.0
+        ],
+        "__type__": "ColorWheel"
+      },
+      {
+        "label": "Master Dimmer",
+        "placement": {
+          "column": 3,
+          "row": 1,
+          "spanColumn": 1,
+          "spanRow": 1
+        },
+        "address": "master_dimmer",
+        "value": 1.0,
+        "max": null,
+        "min": null,
+        "orientation": 1,
+        "__type__": "Fader"
       }
     ],
     "__type__": "Group"

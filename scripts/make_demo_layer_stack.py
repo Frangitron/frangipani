@@ -15,11 +15,11 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     _logger = logging.getLogger("Script:MakeDemoLayerStack")
 
-    layer_stack = LayerStack(
-        name="Demo Layer Stack",
-        layers=[
+    layers = []
+    for layer_name in ["Intermission", "Presentation", "Performance"]:
+        layers.extend([
             Layer(
-                name="Spots",
+                name=layer_name + " Spots",
                 scope=LayerScopeTag(tags=['spot']),
                 values=[
                     LayerValueScalar(name="Dimmer", parameter_selector="dimmer", value=1.0),
@@ -27,30 +27,36 @@ if __name__ == "__main__":
                 opacity=1.0,
             ),
             Layer(
-                name="RGB",
-                scope=LayerScopeTag(tags=['rgb']),
+                name=layer_name + " Bowls",
+                scope=LayerScopeTag(tags=['bowl']),
                 values=[
                     LayerValueVector3(name="ColorRGB", parameter_selector="ColorRGB", value=(1.0, 1.0, 1.0)),
                 ],
                 opacity=1.0,
-            ),
-            Layer(
-                name="Master Dimmer",
-                scope=LayerScopeAll(),
-                values=[
-                    LayerValueScalar(name="Dimmer", parameter_selector="*", value=0.0),
-                ],
-                opacity=0.0,
-            ),
-            Layer(
-                name="Blackout",
-                scope=LayerScopeAll(),
-                values=[
-                    LayerValueScalar(name="Dimmer", parameter_selector="*", value=0.0),
-                ],
-                opacity=0.0,
-            ),
-        ],
+        )])
+
+    layers.extend([
+        Layer(
+            name="Master Dimmer",
+            scope=LayerScopeAll(),
+            values=[
+                LayerValueScalar(name="Dimmer", parameter_selector="*", value=0.0),
+            ],
+            opacity=0.0,
+        ),
+        Layer(
+            name="Blackout",
+            scope=LayerScopeAll(),
+            values=[
+                LayerValueScalar(name="Dimmer", parameter_selector="*", value=0.0),
+            ],
+            opacity=0.0,
+        )
+    ])
+
+    layer_stack = LayerStack(
+        name="Demo Layer Stack",
+        layers=layers
     )
 
     store = JsonLayerStackStore()

@@ -28,25 +28,26 @@ if __name__ == "__main__":
             label="Root Control",
             placement=Placement(column=0, row=0),
             controls=[
-                Fader(
-                    address="spot_dimmer",
-                    label="Spots Dimmer",
+                Button(
+                    address="intermission_on",
+                    is_toggle=True,
+                    label="Intermission",
                     placement=Placement(column=0, row=0),
-                    orientation=ControlOrientationEnum.Vertical,
-                    value=0.0
+                    value=False,
                 ),
-                ColorWheel(
-                    address="rgb_wheel",
-                    label="RGB Wheel",
+                Button(
+                    address="presentation_on",
+                    is_toggle=True,
+                    label="Presentation",
                     placement=Placement(column=1, row=0),
-                    value=(0.0, 0.0)
+                    value=False,
                 ),
-                Fader(
-                    address="master_dimmer",
-                    label="Master Dimmer",
+                Button(
+                    address="performance_on",
+                    is_toggle=True,
+                    label="Performance",
                     placement=Placement(column=2, row=0),
-                    orientation=ControlOrientationEnum.Vertical,
-                    value=0.0
+                    value=False,
                 ),
                 Button(
                     address="blackout",
@@ -54,7 +55,32 @@ if __name__ == "__main__":
                     label="Blackout",
                     placement=Placement(column=3, row=0),
                     value=False,
-                )
+                ),
+                ColorWheel(
+                    address="intermission_color",
+                    label="Intermission",
+                    placement=Placement(column=0, row=1),
+                    value=(0.0, 0.0)
+                ),
+                ColorWheel(
+                    address="presentation_color",
+                    label="Presentation",
+                    placement=Placement(column=1, row=1),
+                    value=(0.0, 0.0)
+                ),
+                ColorWheel(
+                    address="performance_color",
+                    label="Performance",
+                    placement=Placement(column=2, row=1),
+                    value=(0.0, 0.0)
+                ),
+                Fader(
+                    address="master_dimmer",
+                    label="Master Dimmer",
+                    placement=Placement(column=3, row=1),
+                    orientation=ControlOrientationEnum.Vertical,
+                    value=1.0
+                ),
             ]
         )
     )
