@@ -19,15 +19,18 @@ class PatchItem:
         self.at_default()
 
     def set_parameter_value(self, name: str, value: tuple[float, ...], opacity: float) -> None:
+        # FIXME edge case where layer selector is All and value has 1 channel :/
+        channel_count = len(self.definition.parameter_by_name(name).type.channel_kinds)
+        if len(value) == 1 and channel_count > 1:
+            value = [value[0]] * channel_count
+
         channel_values = []
         for channel_index, channel_value in enumerate(value):
             channel_values.append(min(max(0.0, channel_value * opacity + self._parameter_values[name][channel_index] * (1 - opacity)), 1.0))
 
         self._parameter_values[name] = tuple(channel_values)
-        print(">", self._parameter_values[name])
 
     def get_parameter_value(self, name: str) -> tuple[float, ...]:
-        print("<", self._parameter_values[name])
         return self._parameter_values[name]
 
     def at_zero(self):

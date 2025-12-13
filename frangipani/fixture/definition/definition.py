@@ -15,3 +15,9 @@ class FixtureDefinition:
     @property
     def identifier(self) -> str:
         return f"{self.manufacturer}#{self.model}"
+
+    def parameter_by_name(self, name: str) -> FixtureParameterDefinition:
+        try:
+            return next(filter(lambda p: p.name == name, self.parameter_definitions))
+        except StopIteration:
+            raise ValueError(f"Parameter '{name}' not found in fixture definition")
